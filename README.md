@@ -10,6 +10,7 @@ I study Engineering Management at Northeast Forestry University with a minor in 
 
 | 项目 / Project | 工程内容 / Engineering Focus | 技术 / Stack |
 | --- | --- | --- |
+| [Construction Cost Analyzer](https://github.com/KaiserIIII/construction-cost-analyzer) | 工程计量、工料机组价、清单计价与开发评价。 / Quantity takeoff, unit-rate build-up, BOQ pricing and development appraisal. | Python, JavaScript, HTML/CSS |
 | [CS Nature Paper](https://github.com/KaiserIIII/cs-nature-paper-skill) | 研究任务编排与证据追踪。 / Research workflow orchestration and evidence provenance. | Python, Agent Skills, JSON Schema |
 | [Unified Attachment Pipeline](https://github.com/KaiserIIII/langbot-unified-attachment-pipeline) | 多格式附件解析、版本上下文与长期记忆。 / Attachment parsing, version-aware context, and persistent memory. | Python, LangBot, SQLite |
 | [Industrial Device Check](https://github.com/KaiserIIII/QLDeviceCheck_Generic_WebUI_Linux) | 设备发现、协议响应校验与检测报告。 / Device discovery, protocol validation, and inspection reports. | Python, Linux, Modbus RTU/TCP |
@@ -21,7 +22,6 @@ I study Engineering Management at Northeast Forestry University with a minor in 
 
 - [Return-to-Source Hysteresis](https://github.com/KaiserIIII/return-to-source-hysteresis)：测试时自适应的回源行为研究。 / Return-to-source behavior in test-time adaptation.
 - [Campus UAV Inspection Manager](https://github.com/KaiserIIII/-UAV-inspection-task-management-system-in-college-parks)：巡检调度与异常维修管理。 / Inspection scheduling and repair tracking.
-- [Construction Cost Analyzer](https://github.com/KaiserIIII/construction-cost-analyzer)：建筑成本偏差的探索性分析。 / Exploratory construction cost analysis.
 - [General Simulator](https://github.com/KaiserIIII/jiangjun)：事件驱动的 Godot 策略原型。 / An event-driven Godot strategy prototype.
 - [Claude ↔ Codex Bridge](https://github.com/KaiserIIII/claude-codex-bridge)：基于共享文件的任务与结果交换。 / File-based task and result exchange.
 - [KAISER Portfolio](https://github.com/KaiserIIII/kaiser-site)：Astro 与 TypeScript 个人作品网站。 / An Astro and TypeScript portfolio.
