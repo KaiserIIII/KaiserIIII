@@ -41,7 +41,7 @@ flowchart LR
 
 ## 重点项目 / Featured Projects
 
-### [知序 / Zhixu · Enterprise Knowledge](https://github.com/KaiserIIII/universal-knowledge-base)
+### [知序 / Zhixu · Enterprise Knowledge](https://github.com/KaiserIIII/zhixu)
 
 免费、开源、自托管的团队知识工作台。支持多租户与角色权限、多知识库、模块化文件解析、混合检索和重排；通过可视化拖拽工作流连接多个模型，保留工作流版本、运行轨迹和引用证据。包含会话反馈、知识缺口分析与检索评测，提供中英文管理界面，默认不采集遥测。
 
