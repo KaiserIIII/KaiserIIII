@@ -6,6 +6,39 @@
 
 I study Engineering Management at Northeast Forestry University with a minor in Computer Science. I build knowledge systems, industrial acceptance tools, quantity surveying software and games, connecting domain rules with usable interfaces and traceable results.
 
+## 工程方向 / Engineering Map
+
+```mermaid
+flowchart LR
+    Kaiser["Kaiser · 于越 / Yue Yu<br/>工程管理 × 计算机<br/>Engineering Management × CS"]
+    Kaiser --> AI["知识系统<br/>Knowledge Systems"]
+    Kaiser --> Game["游戏工程<br/>Game Engineering"]
+    Kaiser --> Industry["工业软件<br/>Industrial Software"]
+    Kaiser --> Cost["工程计价<br/>Quantity Surveying"]
+    Kaiser --> Research["研究工具<br/>Research Tools"]
+
+    AI --> Zhixu["知序 · Zhixu<br/>RAG · 多模型 / Multi-model"]
+    AI --> LangBot["LangBot Pipeline<br/>附件解析 / Attachment Parsing"]
+    Game --> CardCraft["卡制工程 · CardCraft<br/>Steam PvP · Workshop"]
+    Industry --> QL["QLDeviceCheck<br/>现场验收 / Field Acceptance"]
+    Cost --> Analyzer["Construction Cost Analyzer<br/>计量与评价 / Takeoff & Appraisal"]
+    Research --> Nature["CS Nature Paper<br/>流程与证据 / Workflows & Evidence"]
+    Research --> Repro["ReproShift<br/>依赖兼容 / Dependency Compatibility"]
+
+    classDef root fill:#15324f,stroke:#15324f,color:#ffffff
+    classDef knowledge fill:#e8f4f2,stroke:#338575,color:#153e37
+    classDef game fill:#eeeafa,stroke:#8061b1,color:#3b2855
+    classDef industry fill:#e9f1fa,stroke:#4e7cae,color:#213a56
+    classDef cost fill:#fff4e1,stroke:#be8b39,color:#5b421c
+    classDef research fill:#f1f3f5,stroke:#7a8793,color:#303b45
+    class Kaiser root
+    class AI,Zhixu,LangBot knowledge
+    class Game,CardCraft game
+    class Industry,QL industry
+    class Cost,Analyzer cost
+    class Research,Nature,Repro research
+```
+
 ## 重点项目 / Featured Projects
 
 ### [知序 / Zhixu · Enterprise Knowledge](https://github.com/KaiserIIII/universal-knowledge-base)
@@ -15,6 +48,16 @@ I study Engineering Management at Northeast Forestry University with a minor in 
 A free, open-source, self-hosted knowledge workspace with tenant isolation, role-based access, multiple knowledge bases, modular file parsing, hybrid retrieval and reranking. Drag-and-drop workflows connect multiple models with version history, execution traces and source citations. Includes conversation feedback, knowledge-gap analysis, retrieval evaluation and a Chinese–English management interface. No telemetry is collected by default.
 
 **FastAPI · SQLAlchemy · ChromaDB · BM25 · JavaScript · Apache-2.0**
+
+### [卡制工程 / CardCraft Engineering](https://github.com/KaiserIIII/cardcraft-engineering-portfolio)
+
+一款以自定义卡牌与构筑为核心的 Godot 策略卡牌游戏，支持本地 AI 对战、Steam 在线 PvP 和 Workshop 卡牌与牌组分享。工程内容覆盖好友房间与匹配、P2P 状态与消息校验、用户内容隔离、存档迁移、国际化和 Windows 发布验证。公开仓库提供架构说明、工程案例与独立示例。
+
+A Godot strategy card game built around designing cards and constructing decks, with local AI battles, online Steam PvP and Workshop sharing of cards and decks. Engineering work covers friend lobbies and matchmaking, P2P state and message validation, content isolation, save migration, localization and Windows release verification. The public repository contains architecture notes, case studies and standalone examples.
+
+[Steam 商店与 Demo / Steam Store & Demo](https://store.steampowered.com/app/4338300/_/) · [工程作品集 / Engineering Portfolio](https://github.com/KaiserIIII/cardcraft-engineering-portfolio)
+
+**Godot · GDScript · Steamworks · P2P Networking · Workshop UGC**
 
 ### [QLDeviceCheck · 现场验收工作台 / Field Acceptance Workbench](https://github.com/KaiserIIII/QLDeviceCheck_Generic_WebUI_Linux)
 
@@ -32,13 +75,12 @@ A local browser workspace and CLI sharing one engine for quantity takeoff, resou
 
 **Python · Decimal · JavaScript · HTML/CSS · MIT**
 
-## AI 工具、研究与游戏 / AI Tools, Research & Games
+## AI 工具与研究 / AI Tools & Research
 
 | 项目 / Project | 内容 / Work | 技术 / Stack |
 | --- | --- | --- |
 | [LangBot Unified Attachment Pipeline](https://github.com/KaiserIIII/langbot-unified-attachment-pipeline) | 可安装的 Parser 插件：多格式附件解析、视觉模型主备回退、文件哈希绑定上下文与版本化长期记忆。 / Installable Parser plugin with multi-format parsing, vision fallback, hash-bound context and versioned memory. | Python, LangBot, SQLite |
 | [CS Nature Paper](https://github.com/KaiserIIII/cs-nature-paper-skill) | 研究流程编排、研究图谱、哈希链接事件记录，以及从实验协议到论文主张的证据追溯。 / Research orchestration, research graphs, hash-linked event logs and provenance from protocols to manuscript claims. | Python, Agent Skills, JSON Schema |
-| [CardCraft Engineering · 卡制工程](https://github.com/KaiserIIII/cardcraft-engineering-portfolio) | 联机房间与 P2P 对局、Workshop 内容校验、存档迁移和发布验证的工程案例与独立示例。 / Engineering case studies and standalone examples for lobbies, P2P matches, Workshop validation, save migration and release verification. | Godot, GDScript, Steamworks |
 | [ReproShift](https://github.com/KaiserIIII/reproshift-artifact) | Python 历史依赖兼容性与约束修复研究产物，区分包可用性、wheel 可用性和二进制依赖解析。 / Research artifact separating package availability, wheel availability and binary resolution when evaluating historical compatibility and constraint repair. | Python, pip, Statistical Analysis |
 
 ## 更多项目 / More Work
@@ -50,4 +92,4 @@ A local browser workspace and CLI sharing one engine for quantity takeoff, resou
 - [KAISER Portfolio](https://github.com/KaiserIIII/kaiser-site)：Astro 与 TypeScript 个人作品网站，使用结构化项目数据、可复用组件和静态构建。 / An Astro and TypeScript portfolio with structured project data, reusable components and static builds.
 - [Aseprite Builder](https://github.com/KaiserIIII/aseprite-builder)：上游构建工作流的 fork，当前启用 Windows 构建。 / An upstream build-workflow fork with Windows builds enabled.
 
-[GitHub](https://github.com/KaiserIIII) · [Email / 邮箱](mailto:hello@kaiseriii.me)
+[GitHub](https://github.com/KaiserIIII) · [Email / 邮箱](mailto:kaiser@nefu.edu.cn)
