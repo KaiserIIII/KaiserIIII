@@ -80,7 +80,7 @@ A local browser workspace and CLI sharing one engine for quantity takeoff, resou
 | 项目 / Project | 内容 / Work | 技术 / Stack |
 | --- | --- | --- |
 | [LangBot Unified Attachment Pipeline](https://github.com/KaiserIIII/langbot-unified-attachment-pipeline) | 可安装的 Parser 插件：多格式附件解析、视觉模型主备回退、文件哈希绑定上下文与版本化长期记忆。 / Installable Parser plugin with multi-format parsing, vision fallback, hash-bound context and versioned memory. | Python, LangBot, SQLite |
-| [CS Nature Paper](https://github.com/KaiserIIII/cs-nature-paper-skill) | 研究流程编排、研究图谱、哈希链接事件记录，以及从实验协议到论文主张的证据追溯。 / Research orchestration, research graphs, hash-linked event logs and provenance from protocols to manuscript claims. | Python, Agent Skills, JSON Schema |
+| [CS Nature Paper V4.1.0](https://github.com/KaiserIIII/cs-nature-paper-skill) | 研究流程编排、研究图谱与论文证据追溯；[系统结构图 / Architecture](https://github.com/KaiserIIII/cs-nature-paper-skill/blob/main/README_zh.md#系统结构一览)。 / Research orchestration, evidence provenance and a linked system architecture overview. | Python, Agent Skills, JSON Schema |
 | [ReproShift](https://github.com/KaiserIIII/reproshift-artifact) | Python 历史依赖兼容性与约束修复研究产物，区分包可用性、wheel 可用性和二进制依赖解析。 / Research artifact separating package availability, wheel availability and binary resolution when evaluating historical compatibility and constraint repair. | Python, pip, Statistical Analysis |
 
 ## 更多项目 / More Work
