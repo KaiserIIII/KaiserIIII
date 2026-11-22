@@ -1,4 +1,4 @@
-name: Refresh public portfolio metrics
+name: Refresh portfolio information design
 
 on:
   workflow_dispatch:
@@ -8,7 +8,8 @@ on:
     paths:
       - '.github/workflows/profile-telemetry.yml'
       - 'tools/render_live_metrics.py'
-      - 'tests/test_profile_renderer.py'
+      - 'tests/**'
+      - 'README.md'
 
 permissions:
   contents: write
@@ -22,24 +23,22 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 8
     steps:
-      - name: Check out profile repository
+      - name: Check out repository
         uses: actions/checkout@v4
-        with:
-          persist-credentials: true
-      - name: Test data filters and SVG rendering
-        run: python3 -m unittest discover -s tests -p 'test_profile_renderer.py' -v
-      - name: Refresh public-only metrics
+      - name: Test data boundaries, typography and SVG output
+        run: python3 -m unittest discover -s tests -v
+      - name: Refresh diagrams and public-only dashboard
         env:
           GH_TOKEN: ${{ github.token }}
-        run: python3 tools/render_live_metrics.py --output assets/live-dashboard.svg
-      - name: Commit updated visual only when changed
+        run: python3 tools/render_live_metrics.py --output assets/live-dashboard.svg --art-dir assets
+      - name: Commit generated assets if changed
         run: |
-          git add assets/live-dashboard.svg
+          git add assets/profile-hero.svg assets/project-atlas.svg assets/engineering-loop.svg assets/evidence-board.svg assets/live-dashboard.svg
           if git diff --cached --quiet; then
-            echo 'No metric changes.'
+            echo 'SVGs already current.'
             exit 0
           fi
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git commit -m 'chore: refresh public repository dashboard [skip ci]'
+          git commit -m 'chore: regenerate editorial portfolio [skip ci]'
           git push
