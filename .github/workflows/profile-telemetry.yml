@@ -1,0 +1,45 @@
+name: Refresh public portfolio metrics
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 3 * * 1,4'
+  push:
+    paths:
+      - '.github/workflows/profile-telemetry.yml'
+      - 'tools/render_live_metrics.py'
+      - 'tests/test_profile_renderer.py'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: public-profile-telemetry
+  cancel-in-progress: false
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Check out profile repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Test data filters and SVG rendering
+        run: python3 -m unittest discover -s tests -p 'test_profile_renderer.py' -v
+      - name: Refresh public-only metrics
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 tools/render_live_metrics.py --output assets/live-dashboard.svg
+      - name: Commit updated visual only when changed
+        run: |
+          git add assets/live-dashboard.svg
+          if git diff --cached --quiet; then
+            echo 'No metric changes.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'chore: refresh public repository dashboard [skip ci]'
+          git push
