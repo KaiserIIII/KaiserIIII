@@ -15,7 +15,8 @@ class EditorialVisualTests(unittest.TestCase):
                 self.assertTrue(image.startswith("<svg "))
                 self.assertIn('viewBox=', image)
                 self.assertNotIn("<script", image)
-                self.assertNotIn("http://", image)
+                self.assertNotIn('href="http://', image)
+                self.assertNotIn('href="https://', image)
                 self.assertNotIn("#050b19", image)
         ET.fromstring(draw_dashboard(fixture))
 
