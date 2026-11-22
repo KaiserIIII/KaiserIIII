@@ -28,7 +28,7 @@ jobs:
       - name: Check interactive application JavaScript
         run: python tools/check_experience.py
       - name: Test interaction markup and privacy constraints
-        run: python -m unittest discover -s tests -p 'test_experience.py' -v
+        run: python -m unittest discover -s tests -p 'test_*.py' -v
       - name: Install Pillow for motion graphics
         run: python -m pip install Pillow==11.3.0
       - name: Render animated editorial cover
