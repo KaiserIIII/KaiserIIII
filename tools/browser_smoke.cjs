@@ -194,8 +194,42 @@ async function check(){
     assert.equal(new URL(page.url()).searchParams.has('trail'),false);
     await page.locator('[data-lang="en"]').click();
 
-    // Accessibility: audit the rendered desktop experience (not only markup).
+    // V10: natural-language evidence search, traceable source and honest limits.
+    await page.locator('#search-open').click();
+    await page.locator('#command-input').fill('你做过哪些数据库可靠性研究？');
+    assert.equal(await page.locator('.command-result').count()>0,true);
+    assert.equal(await page.locator('.command-result').first().getAttribute('data-project-id'),'migrationwitness');
+    assert.match(await page.locator('#command-preview-proof').innerText(),/PostgreSQL/i);
+    assert.match(await page.locator('#command-preview-boundary').innerText(),/specific|migration/i);
+    assert.match(await page.locator('#command-evidence-link').getAttribute('href'),/github\.com\/KaiserIIII\/migrationwitness/);
+    await page.locator('#command-input').fill('有没有真正发布过的产品？');
+    assert.equal(await page.locator('.command-result').first().getAttribute('data-project-id'),'cardcraft');
+    assert.match(await page.locator('#command-preview-proof').innerText(),/Steam/i);
+    await page.locator('#command-input').fill('completely unrelated unobtanium dancing telescopes zyxwvu');
+    assert.equal(await page.locator('.command-result').count(),0);
+    assert.equal(await page.locator('#command-preview').isHidden(),true);
+    await page.locator('#command-input').fill('');
+    await page.locator('.command-prompt').nth(1).click();
+    assert.match(await page.locator('#command-input').inputValue(),/database reliability/);
+    await page.screenshot({path:path.join(SHOTS,'evidence-search-desktop.png'),animations:'disabled'});
+
+    // Audit search while OPEN, including actual evidence cards and links.
     await page.addScriptTag({path:require.resolve('axe-core')});
+    const searchA11y=await page.evaluate(async()=>axe.run(document,{
+      runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21a','wcag21aa']}
+    }));
+    const searchSevere=searchA11y.violations.filter(v=>['critical','serious'].includes(v.impact));
+    if(searchSevere.length)console.error('Evidence Search AXE findings:',JSON.stringify(searchSevere.map(v=>({
+      id:v.id,impact:v.impact,nodes:v.nodes.map(n=>n.target).slice(0,6)
+    }))));
+    assert.equal(searchSevere.length,0,'Open evidence-search dialog accessibility');
+
+    await page.locator('#command-explore').click();
+    assert.equal(await page.locator('#command-dialog').evaluate(x=>x.open),false);
+    assert.equal(await page.locator('#casebook-dialog').evaluate(x=>x.open),true);
+    await page.locator('#casebook-close').click();
+
+    // Accessibility: audit the rendered desktop experience (not only markup).
     const audit=await page.evaluate(async()=>axe.run(document,{
       runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21a','wcag21aa']}
     }));
@@ -285,6 +319,14 @@ async function check(){
     await mobile.screenshot({path:path.join(SHOTS,'guided-reader-mobile.png'),animations:'disabled'});
     await mobile.locator('#journey-close').click();
     assert.equal(await mobile.locator('body').evaluate(x=>x.scrollWidth<=innerWidth+2),true,'Reader causes body overflow');
+    // V10: evidence search is touch-usable at 390px, with bilingual proof visible.
+    await mobile.locator('#search-open').click();
+    await mobile.locator('#command-input').fill('工程造价计算');
+    assert.equal(await mobile.locator('.command-result').first().getAttribute('data-project-id'),'cost');
+    assert.match(await mobile.locator('#command-preview-proof').innerText(),/计算|引擎/);
+    assert.equal(await mobile.locator('#command-dialog').evaluate(x=>x.scrollWidth<=x.clientWidth+2),true,'Search dialog overflows 390px');
+    await mobile.screenshot({path:path.join(SHOTS,'evidence-search-mobile.png'),animations:'disabled'});
+    await mobile.locator('#command-close').click();
     await mobile.evaluate(()=>scrollTo(0,0));
     await mobile.screenshot({path:path.join(SHOTS,'mobile.png'),fullPage:true,animations:'disabled'});
     const reduced=await browser.newPage({viewport:{width:1280,height:800},reducedMotion:'reduce'});

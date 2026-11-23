@@ -69,3 +69,11 @@ An optional guided reading mode helps first-time visitors discover the work with
 Deep links use `?trail=ship&note=1`, `?trail=verify&note=2` or `?trail=bridge&note=3`. These are reader positions, not telemetry. The mode is bilingual, does not send interaction data to a server, and uses the page's existing reduced-motion settings. `journey.js` renders only through `textContent` and builds all public evidence links from the same ten-record project dataset. Without JavaScript the launcher is hidden and the base page remains readable.
 
 V9 acceptance adds source-level semantic and security checks plus real Chromium desktop and 390px mobile tests: route selection, previous/next, direct step links, Chinese copy, source links, handoff to the casebook/lab/comparison and accessible dialog operation. The raw static source budget is **250 KB**. Source checks and browser tests do not establish a formal accessibility certification.
+
+## V10 — Explainable evidence search
+
+The existing **Cmd/Ctrl+K command palette** now accepts full questions in Chinese or English, without adding a redundant chatbot section. The first-party `search-engine.js` deterministically maps curated query concepts and weighted project-field matches to the **same ten public project records** used elsewhere on the site. A selection reveals the match rationale, that project's **dated/public proof**, its explicit limits and an original public-source link. Buttons can open the corresponding interactive system casebook.
+
+This is a **curated, offline search index**, not an LLM, an internet search, a skills rating or a claim verifier. There is no remote call, user profiling, analytics collection, hidden private code or fabricated citation. The source list is not guaranteed current; facts must be checked via the linked original records. Unknown queries display a clear no-match result instead of hallucinating an answer.
+
+The implementation remains within the static 270 KB **raw** source budget and adds nine Node search-invariant tests and five Python source-contract tests. Real Chromium acceptance exercises natural-language examples, selected evidence, no-match behavior, 390px touch layout and the pre-existing portfolio workflows. The accessibility audit is automated and scoped, not a full WCAG certification.
