@@ -32,13 +32,10 @@ class GuidedFieldNotesTests(unittest.TestCase):
         self.assertIn('p?.links',JS)
         self.assertIn('evidence',JS.lower())
     def test_bilingual_and_interaction_actions(self):
-        for marker in ('Take a guided look','跟着故事逛一圈','make it real',
-                       'MAKE IT REAL','为什么', 'selectMode','setPair',
+        for marker in ('Take a guided look','跟着故事逛一圈','Make it real','为什么', 'selectMode','setPair',
                        'KAISER_CASEBOOK','history.replaceState',
                        'searchParams.set("trail"','showModal','popstate',
                        'kaiser:language','aria-pressed'):
-            if marker == 'MAKE IT REAL':
-                continue
             self.assertIn(marker,JS)
         self.assertIn('noopener noreferrer',JS)
         self.assertIn('textContent',JS)
@@ -55,7 +52,6 @@ class GuidedFieldNotesTests(unittest.TestCase):
         self.assertIn('.journey-reader[hidden]{display:none!important}',CSS)
         self.assertIn('@media(max-width:660px)',CSS)
         self.assertIn('prefers-reduced-motion:reduce',CSS)
-        self.assertIn('proof',JS.lower()) if False else None
 
 if __name__=="__main__":
     unittest.main()
