@@ -440,3 +440,6 @@ body.js .reveal.is-visible{opacity:1;transform:none}
 #inspector-index,.inspector-top{color:#8d4937}
 .inspector-limit summary{color:#5b5046}
 .footer-inner>p:not(.overline){color:#5e5047}
+
+/* Casebook navigation remains reachable while its long story scrolls. */
+.casebook-topbar{position:sticky;top:0;z-index:3;background:var(--card)}
