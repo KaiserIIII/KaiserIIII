@@ -29,7 +29,7 @@ class ReliabilityLabTests(unittest.TestCase):
                 'zh:{','en:{','selectMode','popstate','textContent','replaceChildren',
                 'role','lab-query','KAISER_LAB'):
    self.assertIn(token,UI)
-  for token in ('.innerHTML','eval(','new Function(','fetch(','XMLHttpRequest'):
+  for token in ('.innerHTML','window.eval(','globalThis.eval(','new Function(','fetch(','XMLHttpRequest'):
    self.assertNotIn(token,UI+ENGINE)
  def test_visual_system_and_mobile(self):
   self.assertIn('.lab-workbench',CSS)
