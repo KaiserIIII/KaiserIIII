@@ -17,7 +17,7 @@ permissions:
 
 concurrency:
   group: portfolio-visual-testing
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   test-browser-and-motion:

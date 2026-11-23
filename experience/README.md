@@ -12,7 +12,7 @@ Open `index.html` directly in a modern browser, or use a local server:
 python3 -m http.server 8765 --directory experience
 ```
 
-The site supports an animated orbit illustration, bilingual content, keyboard-search command palette (Cmd/Ctrl+K or /), project archive search, category filters, draggable SVG relationship graph, project evidence inspector, and shareable, interactive system blueprints (for example `?case=zhixu` and `?case=migrationwitness`). Controls are keyboard accessible and honor reduced-motion preferences.
+The site supports an animated orbit illustration, bilingual content, keyboard-search command palette (Cmd/Ctrl+K or /), project archive search, category filters, draggable SVG relationship graph, project evidence inspector, **project-to-project comparison**, and shareable, interactive system blueprints (for example `?case=zhixu` and `?case=migrationwitness`). Controls are keyboard accessible and honor reduced-motion preferences.
 
 ## Files
 
@@ -22,6 +22,7 @@ The site supports an animated orbit illustration, bilingual content, keyboard-se
 - `app.js` — rendering, graph motion, drag interactions and accessible palette
 - `blueprints.js` — six bilingual conceptual architecture journeys with explicit scope limits
 - `casebook.js` — keyboard-accessible stage diagrams, direct links, and modal interactions
+- `compare.js` — side-by-side curated comparisons, SVG connection art and shareable URL state
 - `cover.svg` and `favicon.svg` — vector branding
 
 ## Verification

@@ -29,7 +29,7 @@ async function check(){
     assert.ok((await page.locator('.archive-row').count())>=1);
     assert.ok((await page.locator('.archive-row').count())<10);
     await page.locator('#archive-query').fill('');
-    const selected=page.locator('[aria-label="Inspect MigrationWitness"]');
+    const selected=page.locator('.graph-project[aria-label="Inspect MigrationWitness"]');
     await selected.scrollIntoViewIfNeeded();
     await selected.click();
     assert.match(await page.locator('#inspector-title').innerText(),/MigrationWitness/);
@@ -82,6 +82,35 @@ async function check(){
     assert.match(await page.locator('#casebook-title').innerText(),/ImportProof/);
     await page.locator('#casebook-close').click();
 
+    // V7 comparison studio: data-driven overlap, real source links and deep-link state.
+    await page.locator('#compare').scrollIntoViewIfNeeded();
+    assert.equal(await page.locator('#compare-left').inputValue(),'zhixu');
+    assert.equal(await page.locator('#compare-right').inputValue(),'migrationwitness');
+    assert.equal(await page.locator('#compare-shared-count').innerText(),'02 / 04');
+    await page.locator('[data-compare-preset="cardcraft,cost"]').click();
+    assert.equal(await page.locator('#compare-shared-count').innerText(),'01 / 04');
+    assert.match(await page.locator('#compare-left-title').innerText(),/CardCraft/);
+    assert.match(await page.locator('#compare-right-title').innerText(),/Construction Cost Analyzer/);
+    let compareUri=new URL(page.url());
+    assert.equal(compareUri.searchParams.get('compare'),'cardcraft,cost');
+    assert.equal(compareUri.hash,'#compare');
+    await page.locator('#compare-swap').click();
+    assert.equal(await page.locator('#compare-left').inputValue(),'cost');
+    assert.equal(await page.locator('#compare-right').inputValue(),'cardcraft');
+    await page.locator('#compare-left').selectOption('zhixu');
+    assert.equal(await page.locator('#compare-left').inputValue(),'zhixu');
+    await page.goto(ROOT+'?compare=wifiscope,importproof#compare',{waitUntil:'networkidle'});
+    assert.equal(await page.locator('#compare-left').inputValue(),'wifiscope');
+    assert.equal(await page.locator('#compare-right').inputValue(),'importproof');
+    assert.equal(await page.locator('#compare-shared-count').innerText(),'02 / 04');
+    assert.ok(await page.locator('#compare-left-links a').count()>=1);
+    assert.ok(await page.locator('#compare-right-links a').count()>=1);
+    await page.locator('[data-lang="zh"]').click();
+    assert.match(await page.locator('#compare-title').innerText(),/不同的系统/);
+    assert.match(await page.locator('#compare-explanation').innerText(),/都涉及/);
+    await page.locator('[data-lang="en"]').click();
+    await page.locator('#compare').screenshot({path:path.join(SHOTS,'comparison-desktop.png'),animations:'disabled'});
+
     // Accessibility: audit the rendered desktop experience (not only markup).
     await page.addScriptTag({path:require.resolve('axe-core')});
     const audit=await page.evaluate(async()=>axe.run(document,{
@@ -107,6 +136,15 @@ async function check(){
     await mobile.goto(ROOT,{waitUntil:'networkidle',timeout:20000});
     await mobile.locator('.archive-row').first().waitFor();
     assert.equal(await mobile.locator('body').evaluate(x=>x.scrollWidth<=innerWidth+2),true,'Mobile horizontal overflow');
+    // V7: mobile graph becomes accessible touch cards instead of a wide scrolling canvas.
+    assert.equal(await mobile.locator('#graph-frame').evaluate(x=>getComputedStyle(x).display),'none');
+    assert.equal(await mobile.locator('.mobile-project-entry').count(),10);
+    await mobile.locator('#mobile-project-index .mobile-project-entry').filter({hasText:'WiFiScope'}).click();
+    assert.match(await mobile.locator('#inspector-title').innerText(),/WiFiScope/);
+    await mobile.locator('#map-filters [data-map-filter="research"]').click();
+    assert.equal(await mobile.locator('.mobile-project-entry:visible').count(),4);
+    await mobile.locator('#map-filters [data-map-filter="all"]').click();
+    assert.equal(await mobile.locator('.mobile-project-entry:visible').count(),10);
     await mobile.locator('[data-lang="zh"]').click();
     assert.match(await mobile.locator('h1').innerText(),/喜欢做点东西/);
     await mobile.locator('#archive-query').fill('CardCraft');
@@ -121,6 +159,11 @@ async function check(){
     await mobile.screenshot({path:path.join(SHOTS,'casebook-mobile.png'),animations:'disabled'});
     assert.equal(await mobile.locator('#casebook-dialog').evaluate(x=>x.scrollWidth<=x.clientWidth+2),true,'Case modal horizontal overflow');
     await mobile.locator('#casebook-close').click();
+    await mobile.locator('#compare-left').selectOption('wifiscope');
+    await mobile.locator('#compare-right').selectOption('importproof');
+    assert.equal(await mobile.locator('#compare-shared-count').innerText(),'02 / 04');
+    assert.equal(await mobile.locator('body').evaluate(x=>x.scrollWidth<=innerWidth+2),true,'V7 comparison causes mobile overflow');
+    await mobile.locator('#compare').screenshot({path:path.join(SHOTS,'comparison-mobile.png'),animations:'disabled'});
     await mobile.evaluate(()=>scrollTo(0,0));
     await mobile.screenshot({path:path.join(SHOTS,'mobile.png'),fullPage:true,animations:'disabled'});
     const reduced=await browser.newPage({viewport:{width:1280,height:800},reducedMotion:'reduce'});

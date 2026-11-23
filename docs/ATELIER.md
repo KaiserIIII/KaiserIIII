@@ -58,3 +58,11 @@ The standalone `experience/casebook.js` renderer builds SVG stage nodes and cubi
 - Screenshots from real Chromium runs are retained as test artifacts for editorial review.
 
 The point of these gates is to catch regressions rather than to claim an arbitrary score or universal production certification.
+
+## Comparative notebook (V7)
+
+`experience/compare.js` renders a side-by-side comparison of any two **public** projects using the existing ten-record bilingual data source. It shows independently sourced focus, tech, proof, and known limits; shared areas are simply set intersections of the four curated `domains` labels. No ranking, benchmark, inferred causal link, or fabricated graph weight is calculated. The visual connector is explicitly labeled conceptual; the full text is available in adjacent semantic sections.
+
+The comparison is deep-linkable via `?compare=<project-id>,<project-id>#compare`. Change/swap/preset controls preserve unrelated URL query parameters, restore state through browser history, and provide a copyable link. `experience/app.js` renders a native-button **mobile project index** while retaining the draggable SVG for wider screens. Without scripting, the SVG fallback remains available and scrollable.
+
+V7 acceptance adds Playwright tests for comparison selection, shared-label counts, deep links, swaps, bilingual copy, touch-sized project cards, map filtering, no page horizontal overflow, and automated accessibility auditing. The asset budget includes the comparison module; browser timings are *not* claimed as measured Core Web Vitals.
