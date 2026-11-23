@@ -49,6 +49,52 @@ async function check(){
     await page.keyboard.press('Enter');
     assert.equal(await page.locator('#command-dialog').evaluate(x=>x.open),false);
     assert.match(await page.locator('#inspector-title').innerText(),/WiFiScope/);
+    // V6: every featured project leads to an actual inspectable casebook.
+    await page.locator('#casebook-from-inspector').click();
+    assert.equal(await page.locator('#casebook-dialog').evaluate(x=>x.open),true);
+    assert.match(await page.locator('#casebook-title').innerText(),/WiFiScope/);
+    assert.equal(await page.locator('.casebook-stage-pill').count(),5);
+    await page.locator('.casebook-stage-pill').nth(2).click();
+    assert.match(await page.locator('#casebook-detail').innerText(),/capture|flow|PCAP/i);
+    assert.match(page.url(),/case=wifiscope/);
+    await page.screenshot({path:path.join(SHOTS,'casebook-desktop.png'),animations:'disabled'});
+    await page.locator('#casebook-close').click();
+    assert.equal(await page.locator('#casebook-dialog').evaluate(x=>x.open),false);
+    assert.equal(new URL(page.url()).searchParams.has('case'),false);
+
+    // Deep links work independently of the interactive graph.
+    await page.goto(ROOT+'?case=migrationwitness',{waitUntil:'networkidle'});
+    assert.equal(await page.locator('#casebook-dialog').evaluate(x=>x.open),true);
+    assert.match(await page.locator('#casebook-title').innerText(),/MigrationWitness/);
+    await page.locator('#casebook-close').click();
+    await page.locator('[data-lang="zh"]').click();
+    await page.locator('[data-open-case="cardcraft"]').click();
+    assert.match(await page.locator('#casebook-stage-name').innerText(),/玩家操作/);
+    await page.locator('.casebook-stage-pill').nth(1).click();
+    assert.match(await page.locator('#casebook-stage-name').innerText(),/房间生命周期/);
+    await page.locator('#casebook-close').click();
+    await page.locator('[data-lang="en"]').click();
+
+    // Fallback summaries for the four remaining public projects.
+    const row=page.locator('.archive-row').filter({hasText:'ImportProof'});
+    await row.locator('button').click();
+    assert.equal(await page.locator('.casebook-stage-pill').count(),3);
+    assert.match(await page.locator('#casebook-title').innerText(),/ImportProof/);
+    await page.locator('#casebook-close').click();
+
+    // Accessibility: audit the rendered desktop experience (not only markup).
+    await page.addScriptTag({path:require.resolve('axe-core')});
+    const audit=await page.evaluate(async()=>axe.run(document,{
+      runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21a','wcag21aa']}
+    }));
+    const severe=audit.violations.filter(v=>['critical','serious'].includes(v.impact));
+    if(severe.length)console.error('AXE serious/critical findings:',JSON.stringify(severe.map(v=>({id:v.id,impact:v.impact,nodes:v.nodes.map(n=>n.target).slice(0,8)}))));
+    assert.equal(severe.length,0,'Serious/critical accessibility violations');
+
+    const budget=await page.evaluate(()=>performance.getEntriesByType('resource')
+      .filter(x=>x.name.startsWith(location.origin)).reduce((sum,x)=>sum+(x.transferSize||x.encodedBodySize||0),0));
+    assert.ok(budget<280000,'Static source transfer exceeds 280KB: '+budget);
+    console.log('Local resource transfer budget:',budget,'bytes; axe violations:',audit.violations.length);
     await page.evaluate(()=>scrollTo(0,0));
     await page.locator('body').click({position:{x:5,y:5},force:true});
     await page.screenshot({path:path.join(SHOTS,'desktop.png'),fullPage:true,animations:'disabled'});
@@ -62,6 +108,15 @@ async function check(){
     await mobile.locator('#archive-query').fill('CardCraft');
     assert.equal(await mobile.locator('.archive-row').count(),1);
     await mobile.locator('#archive-query').fill('');
+    // Modal and stage controls are also usable on a 390px touch layout.
+    await mobile.locator('.archive-row').filter({hasText:'Zhixu'}).locator('button').click();
+    assert.equal(await mobile.locator('#casebook-dialog').evaluate(x=>x.open),true);
+    assert.match(await mobile.locator('#casebook-title').innerText(),/Zhixu/);
+    await mobile.locator('.casebook-stage-pill').nth(3).click();
+    assert.match(await mobile.locator('#casebook-stage-name').innerText(),/回答/);
+    await mobile.screenshot({path:path.join(SHOTS,'casebook-mobile.png'),animations:'disabled'});
+    assert.equal(await mobile.locator('#casebook-dialog').evaluate(x=>x.scrollWidth<=x.clientWidth+2),true,'Case modal horizontal overflow');
+    await mobile.locator('#casebook-close').click();
     await mobile.evaluate(()=>scrollTo(0,0));
     await mobile.screenshot({path:path.join(SHOTS,'mobile.png'),fullPage:true,animations:'disabled'});
     const reduced=await browser.newPage({viewport:{width:1280,height:800},reducedMotion:'reduce'});
