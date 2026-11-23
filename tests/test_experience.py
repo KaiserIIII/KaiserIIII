@@ -23,10 +23,10 @@ class ExperienceTests(unittest.TestCase):
     def test_semantics(self):
         self.assertFalse(self.parser.duplicates)
         self.assertEqual(self.parser.h1,1)
-        self.assertTrue({"main","hero-title","work","connections","archive","about","contact","relationship-graph","inspector-title","archive-list","command-dialog"}.issubset(self.parser.ids))
+        self.assertTrue({"main","hero-title","work","connections","archive","about","contact","relationship-graph","inspector-title","archive-list","command-dialog","casebook-dialog","casebook-stage-buttons","casebook-graphic"}.issubset(self.parser.ids))
     def test_local_resources(self):
-        self.assertEqual([s.get("src") for s in self.parser.scripts],["./data.js","./app.js"])
-        for f in ("styles.css","data.js","app.js","favicon.svg","cover.svg"):
+        self.assertEqual([s.get("src") for s in self.parser.scripts],["./data.js","./blueprints.js","./app.js","./casebook.js"])
+        for f in ("styles.css","data.js","blueprints.js","app.js","casebook.js","favicon.svg","cover.svg"):
             self.assertTrue((ROOT/"experience"/f).is_file())
         for a in self.parser.links:
             if a.get("href","").startswith("#"):self.assertIn(a["href"][1:],self.parser.ids)
