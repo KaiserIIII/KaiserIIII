@@ -1,5 +1,7 @@
 <p align="center">
-  <img src="./assets/portrait-motion.gif" width="100%" alt="An animated, warm-toned map of software systems, experiments and the projects behind them."/>
+  <a href="https://kaiseriiii.github.io/KaiserIIII/" title="Open the interactive portfolio">
+    <img src="./assets/portrait-motion.gif" width="100%" alt="Yue Yu / 于越 — editorial motion portrait. Click to explore the interactive portfolio."/>
+  </a>
 </p>
 
 <h2 align="center">Yue Yu · 于越</h2>
@@ -11,10 +13,10 @@
 </p>
 
 <p align="center">
+  <a href="https://kaiseriiii.github.io/KaiserIIII/"><b>Interactive portfolio / 交互作品集 ↗</b></a> &nbsp;·&nbsp;
   <a href="https://github.com/KaiserIIII?tab=repositories">Repositories</a> &nbsp;·&nbsp;
   <a href="https://store.steampowered.com/app/4338300/">My game on Steam</a> &nbsp;·&nbsp;
   <a href="https://github.com/KaiserIIII/kaiser-site">Website source</a> &nbsp;·&nbsp;
-  <a href="https://kaiseriiii.github.io/KaiserIIII/"><b>Interactive map / 交互地图 ↗</b></a> &nbsp;·&nbsp;
   <a href="https://github.com/KaiserIIII/KaiserIIII/tree/main/experience">Source</a>
 </p>
 
@@ -78,9 +80,9 @@ I like experiments that reveal *why* something fails or behaves unexpectedly. I 
   <img src="./assets/project-atlas.svg" width="100%" alt="An editorial map connecting software architecture, data, verification and research to representative public repositories."/>
 </p>
 
-There's a [live interactive version ↗](https://kaiseriiii.github.io/KaiserIIII/) if you want to move the nodes, follow animated connections, or switch between Chinese and English. [Source ↗](https://github.com/KaiserIIII/KaiserIIII/tree/main/experience)
+There's also an [interactive portfolio ↗](https://kaiseriiii.github.io/KaiserIIII/) with original motion graphics, draggable relationships and an archive you can search by project or technology. [Source ↗](https://github.com/KaiserIIII/KaiserIIII/tree/main/experience)
 
-可以打开[在线交互地图 ↗](https://kaiseriiii.github.io/KaiserIIII/)试试节点拖拽、动态连线、项目筛选和中英文切换；[源码也在这里](https://github.com/KaiserIIII/KaiserIIII/tree/main/experience)。
+也可以打开[在线交互作品集 ↗](https://kaiseriiii.github.io/KaiserIIII/)看看动态设计、项目关系图、快捷搜索和中英文内容；[完整源码](https://github.com/KaiserIIII/KaiserIIII/tree/main/experience)可以直接查看。
 
 <details>
 <summary><b>More projects / 更多项目</b></summary>
