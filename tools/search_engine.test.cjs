@@ -25,7 +25,7 @@ test("bilingual natural questions rank relevant public work",()=>{
 });
 test("the result carries original evidence and known limitations",()=>{
   const results=query("PostgreSQL migration");
-  assert.ok(results.length>=1);
+  assert.ok(results.results.length>=1);
   const m=results.results.find(r=>r.project.id==="migrationwitness");
   assert.ok(m);
   assert.match(m.evidence,/PostgreSQL/);
@@ -35,7 +35,7 @@ test("the result carries original evidence and known limitations",()=>{
 });
 test("unrelated query reports nothing instead of hallucinating",()=>{
   const q=query("unobtanium dancing telescope zyxwvu");
-  assert.deepEqual(q.results,[]);
+  assert.equal(q.results.length,0);
   assert.equal(q.mode,"lexical");
 });
 test("Chinese and English variants share ids, not fabricated projects",()=>{
