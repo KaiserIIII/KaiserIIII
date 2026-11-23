@@ -111,6 +111,43 @@ async function check(){
     await page.locator('[data-lang="en"]').click();
     await page.locator('#compare').screenshot({path:path.join(SHOTS,'comparison-desktop.png'),animations:'disabled'});
 
+    // V8: hands-on invariant lab — interactive, deterministic, bilingual and source-backed.
+    await page.locator('#lab').scrollIntoViewIfNeeded();
+    assert.equal(await page.locator('#lab-verdict').getAttribute('data-status'),'pass');
+    assert.equal(await page.locator('#lab-reapply').isDisabled(),true);
+    await page.locator('#lab-strategy').selectOption('swap');
+    assert.equal(await page.locator('#lab-reapply').isDisabled(),false);
+    await page.locator('#lab-form-permission button[type=submit]').click();
+    assert.equal(await page.locator('#lab-verdict').getAttribute('data-status'),'fail');
+    assert.equal(await page.locator('.lab-check-status[data-good=false]').count(),3);
+    assert.match(await page.locator('#lab-evidence-link').getAttribute('href'),/PG_OSC_197_RESULTS/);
+    await page.locator('#lab-reapply').check();
+    await page.locator('#lab-form-permission button[type=submit]').click();
+    assert.equal(await page.locator('#lab-verdict').getAttribute('data-status'),'pass');
+    await page.locator('#lab-tab-retrieval').click();
+    assert.equal(await page.locator('#lab-tab-retrieval').getAttribute('aria-selected'),'true');
+    assert.equal(await page.locator('#lab-scoped').isChecked(),true);
+    assert.equal(await page.locator('#lab-verdict').getAttribute('data-status'),'pass');
+    await page.locator('#lab-scoped').uncheck();
+    await page.locator('#lab-form-retrieval button[type=submit]').click();
+    assert.equal(await page.locator('#lab-verdict').getAttribute('data-status'),'fail');
+    assert.match(await page.locator('#lab-checks').innerText(),/B-01/);
+    await page.locator('#lab-scoped').check();
+    await page.locator('#lab-form-retrieval button[type=submit]').click();
+    assert.equal(await page.locator('#lab-verdict').getAttribute('data-status'),'pass');
+    assert.doesNotMatch(await page.locator('#lab-checks').innerText(),/B-01/);
+    await page.locator('[data-lang="zh"]').click();
+    assert.match(await page.locator('#lab-title').innerText(),/亲自/);
+    assert.match(await page.locator('#lab-verdict-desc').innerText(),/租户/);
+    assert.match(await page.locator('#lab-trace').innerText(),/模拟文档/);
+    await page.locator('#lab').screenshot({path:path.join(SHOTS,'lab-desktop.png'),animations:'disabled'});
+    await page.locator('[data-lang="en"]').click();
+    await page.goto(ROOT+'?lab=retrieval#lab',{waitUntil:'networkidle'});
+    assert.equal(await page.locator('#lab-tab-retrieval').getAttribute('aria-selected'),'true');
+    await page.locator('#lab-tab-permission').click();
+    assert.equal(await page.locator('#lab-tab-permission').getAttribute('aria-selected'),'true');
+    assert.equal(new URL(page.url()).searchParams.get('lab'),'permission');
+
     // Accessibility: audit the rendered desktop experience (not only markup).
     await page.addScriptTag({path:require.resolve('axe-core')});
     const audit=await page.evaluate(async()=>axe.run(document,{
@@ -164,6 +201,18 @@ async function check(){
     assert.equal(await mobile.locator('#compare-shared-count').innerText(),'02 / 04');
     assert.equal(await mobile.locator('body').evaluate(x=>x.scrollWidth<=innerWidth+2),true,'V7 comparison causes mobile overflow');
     await mobile.locator('#compare').screenshot({path:path.join(SHOTS,'comparison-mobile.png'),animations:'disabled'});
+    // V8: 390px touch interaction, two-state verification and no overflow.
+    await mobile.locator('#lab-tab-permission').click();
+    await mobile.locator('#lab-strategy').selectOption('swap');
+    await mobile.locator('#lab-form-permission button[type=submit]').click();
+    assert.equal(await mobile.locator('#lab-verdict').getAttribute('data-status'),'fail');
+    await mobile.locator('#lab-tab-retrieval').click();
+    assert.equal(await mobile.locator('#lab-verdict').getAttribute('data-status'),'pass');
+    await mobile.locator('#lab-scoped').uncheck();
+    await mobile.locator('#lab-form-retrieval button[type=submit]').click();
+    assert.equal(await mobile.locator('#lab-verdict').getAttribute('data-status'),'fail');
+    assert.equal(await mobile.locator('body').evaluate(x=>x.scrollWidth<=innerWidth+2),true,'V8 lab causes body overflow');
+    await mobile.locator('#lab').screenshot({path:path.join(SHOTS,'lab-mobile.png'),animations:'disabled'});
     await mobile.evaluate(()=>scrollTo(0,0));
     await mobile.screenshot({path:path.join(SHOTS,'mobile.png'),fullPage:true,animations:'disabled'});
     const reduced=await browser.newPage({viewport:{width:1280,height:800},reducedMotion:'reduce'});
