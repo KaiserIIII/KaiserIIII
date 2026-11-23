@@ -37,3 +37,16 @@ python3 -m unittest discover -s tests -p 'test_*.py' -v
 Browser test: `node tools/browser_smoke.cjs` with a local server and Playwright installed. See `../docs/ATELIER.md` for design constraints and evidence caveats.
 
 The profile README itself is static by GitHub design, with an animated image linking to this real, interactive Pages application.
+
+## V7 acceptance snapshot
+
+The 2026-11-23 V7 branch passed 26 Python source tests, the Chromium interaction suite
+(desktop and 390px touch viewport), Chinese/English switching, SVG drag/reset,
+project comparison, mobile filtering, deep links, reduced-motion checks,
+and automated axe-core WCAG A/AA checks with zero reported violations.
+These are scoped automated checks, not a blanket accessibility certification.
+The source budget measures raw on-disk bytes rather than an unreliable
+cache-dependent transfer estimate.
+
+Use the [GitHub Actions logs](https://github.com/KaiserIIII/KaiserIIII/actions)
+and downloadable visual-review screenshots to inspect acceptance evidence.
