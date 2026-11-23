@@ -137,7 +137,7 @@ async function check(){
     assert.equal(await page.locator('#lab-verdict').getAttribute('data-status'),'pass');
     assert.equal(await page.locator('#lab-checks .lab-check-status[data-good=false]').count(),0,'Scoped retrieval must exclude all foreign tenant hits');
     await page.locator('[data-lang="zh"]').click();
-    assert.match(await page.locator('#lab-title').innerText(),/亲自/);
+    assert.match(await page.locator('#lab-title').innerText(),/动手验证/);
     assert.match(await page.locator('#lab-verdict-desc').innerText(),/租户/);
     assert.match(await page.locator('#lab-trace').innerText(),/模拟文档/);
     await page.locator('#lab').screenshot({path:path.join(SHOTS,'lab-desktop.png'),animations:'disabled'});
