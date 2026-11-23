@@ -1,22 +1,28 @@
-name: Validate and render interactive portfolio motion
+name: Test portfolio interaction and README motion
+
 on:
   push:
     paths:
       - 'experience/**'
-      - 'tools/render_motion.py'
       - 'tools/check_experience.py'
+      - 'tools/browser_smoke.cjs'
       - 'tests/test_experience.py'
+      - 'tests/test_audience.py'
+      - 'tools/render_motion.py'
       - '.github/workflows/experience.yml'
   workflow_dispatch:
+
 permissions:
   contents: write
+
 concurrency:
-  group: portfolio-motion
+  group: portfolio-visual-testing
   cancel-in-progress: false
+
 jobs:
-  validate-and-render:
+  test-browser-and-motion:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 18
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -25,19 +31,36 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Check interactive application JavaScript
-        run: python tools/check_experience.py
-      - name: Test interaction markup and privacy constraints
-        run: python -m unittest discover -s tests -p 'test_*.py' -v
-      - name: Install Pillow for motion graphics
-        run: python -m pip install Pillow==11.3.0
-      - name: Render animated editorial cover
-        run: python tools/render_motion.py --output assets/portrait-motion.gif
-      - name: Commit generated GIF
+      - name: Source and JavaScript syntax checks
+        run: python3 tools/check_experience.py
+      - name: Full Python test suite
+        run: python3 -m unittest discover -s tests -p 'test_*.py' -v
+      - name: Install Chromium
+        run: |
+          npm install --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Browser acceptance test
+        run: |
+          python3 -m http.server 8765 --bind 127.0.0.1 --directory experience >/tmp/portfolio-http.log 2>&1 &
+          sleep 2
+          node tools/browser_smoke.cjs
+      - name: Preserve desktop and mobile screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: visual-acceptance-screenshots
+          path: qa-shots/*.png
+          if-no-files-found: ignore
+      - name: Regenerate profile animation
+        run: |
+          python3 -m pip install Pillow==11.3.0
+          python3 tools/render_motion.py --output assets/portrait-motion.gif
+      - name: Commit changes to the animated profile only on main
+        if: github.ref == 'refs/heads/main'
         run: |
           git add assets/portrait-motion.gif
           if git diff --cached --quiet; then exit 0; fi
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git commit -m 'chore: refresh animated portrait [skip ci]'
+          git commit -m 'chore: refresh profile motion [skip ci]'
           git push
