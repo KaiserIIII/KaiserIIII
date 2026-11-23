@@ -23,6 +23,12 @@ test("bilingual natural questions rank relevant public work",()=>{
   assert.equal(query("knowledge retrieval and tenant isolation").results[0].project.id,"zhixu");
   assert.equal(query("工程造价计算","zh").results[0].project.id,"cost");
 });
+test("multi-subject queries prefer records relevant to both subjects",()=>{
+  const results=query("database reliability").results;
+  assert.ok(results.length>=2&&results.length<=4);
+  assert.equal(results[0].project.id,"migrationwitness");
+  assert.ok(results.every(x=>x.conceptCount>=2));
+});
 test("the result carries original evidence and known limitations",()=>{
   const results=query("PostgreSQL migration");
   assert.ok(results.results.length>=1);

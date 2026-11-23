@@ -29,7 +29,7 @@ class EvidenceSearchTests(unittest.TestCase):
    for danger in ("new Function(","XMLHttpRequest(","window.eval(","fetch(",".innerHTML"):
     self.assertNotIn(danger,source)
   self.assertIn("results:corpus.slice",ENGINE)
-  self.assertIn("filter(r=>r.score>0)",ENGINE)
+  self.assertIn("results.filter(r=>r.score>0",ENGINE)
   self.assertIn("No public project evidence matched",APP)
   self.assertIn("没有找到匹配",APP)
  def test_bilingual_semantics_no_skill_scoring(self):
