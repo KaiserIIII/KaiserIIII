@@ -107,7 +107,7 @@ async function check(){
     assert.ok(await page.locator('#compare-right-links a').count()>=1);
     await page.locator('[data-lang="zh"]').click();
     assert.match(await page.locator('#compare-title').innerText(),/不同的系统/);
-    assert.match(await page.locator('#compare-explanation').innerText(),/共同/);
+    assert.match(await page.locator('#compare-explanation').innerText(),/都涉及/);
     await page.locator('[data-lang="en"]').click();
     await page.locator('#compare').screenshot({path:path.join(SHOTS,'comparison-desktop.png'),animations:'disabled'});
 
