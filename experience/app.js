@@ -346,7 +346,7 @@
       pin.setAttribute("fill",selected?"#b77559":"#c8bcaf");
       group.setAttribute("aria-pressed",String(selected));
     });
-    $("[data-map-filter]").forEach(button=>button.setAttribute("aria-pressed",String(button.dataset.mapFilter===mapFilter)));
+    $$("[data-map-filter]").forEach(button=>button.setAttribute("aria-pressed",String(button.dataset.mapFilter===mapFilter)));
     updateMobileIndex();
     updateEdges();
   }
