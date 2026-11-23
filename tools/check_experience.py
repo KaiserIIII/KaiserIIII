@@ -12,8 +12,8 @@ class Scripts(HTMLParser):
 def main():
     page=(FOLDER/"index.html").read_text(encoding="utf8")
     p=Scripts();p.feed(page)
-    if p.files!=["./data.js","./blueprints.js","./app.js","./casebook.js"]:raise RuntimeError("Unexpected remote or inline script")
-    for name in ("data.js","blueprints.js","app.js","casebook.js"):
+    if p.files!=["./data.js","./blueprints.js","./app.js","./casebook.js","./compare.js"]:raise RuntimeError("Unexpected remote or inline script")
+    for name in ("data.js","blueprints.js","app.js","casebook.js","compare.js"):
         subprocess.run(["node","--check",str(FOLDER/name)],check=True)
     for name in ("styles.css","favicon.svg","cover.svg"):
         if not (FOLDER/name).is_file():raise RuntimeError("Missing local asset "+name)
