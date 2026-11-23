@@ -8,6 +8,8 @@ on:
       - 'tools/browser_smoke.cjs'
       - 'tests/test_experience.py'
       - 'tests/test_audience.py'
+      - 'tests/test_search.py'
+      - 'tools/search_engine.test.cjs'
       - 'tools/render_motion.py'
       - '.github/workflows/experience.yml'
   workflow_dispatch:
