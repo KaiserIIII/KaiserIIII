@@ -1,10 +1,7 @@
 name: Publish interactive engineering experience
+# Enable GitHub Pages in Settings → Pages before manually running this workflow.
+# Pages is not currently enabled; avoid automatic failed runs on every commit.
 on:
-  push:
-    branches: [main]
-    paths:
-      - 'experience/**'
-      - '.github/workflows/pages.yml'
   workflow_dispatch:
 permissions:
   contents: read
@@ -21,11 +18,9 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
-      - name: Configure GitHub Pages
+      - name: Configure GitHub Pages (Pages must already be enabled)
         uses: actions/configure-pages@v5
-        with:
-          enablement: true
-      - name: Upload the interactive HTML app
+      - name: Upload interactive HTML app
         uses: actions/upload-pages-artifact@v3
         with:
           path: experience
