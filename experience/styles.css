@@ -664,3 +664,6 @@ body.js .reveal.is-visible{opacity:1;transform:none}
  .lab-evidence-footer{padding:16px;align-items:start;flex-direction:column}
  .lab-copy-status{margin-inline:16px}
 }
+
+/* V8 contrast audit: sequential log numbers must remain legible. */
+.lab-trace-number{color:#77513b}
