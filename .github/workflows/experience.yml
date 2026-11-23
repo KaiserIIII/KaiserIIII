@@ -35,6 +35,8 @@ jobs:
         run: python3 tools/check_experience.py
       - name: Full Python test suite
         run: python3 -m unittest discover -s tests -p 'test_*.py' -v
+      - name: Pure-model invariant tests (Node)
+        run: node --test tools/lab_engine.test.cjs
       - name: Install Chromium
         run: |
           npm install --no-save playwright@1.56.1 axe-core@4.10.3
