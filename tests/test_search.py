@@ -35,7 +35,7 @@ class EvidenceSearchTests(unittest.TestCase):
  def test_bilingual_semantics_no_skill_scoring(self):
   for phrase in ("数据库正确性","Published & usable work","reasons","evidence","limitation"):
    self.assertIn(phrase,ENGINE)
-  self.assertIn("项目资料",APP)
+  self.assertIn("项目资料",ENGINE)
   self.assertIn("Search the work & evidence",DATA)
   self.assertIn("探索项目与公开证据",DATA)
   self.assertIn("not AI-generated",APP)
