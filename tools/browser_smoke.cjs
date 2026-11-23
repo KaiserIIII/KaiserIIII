@@ -212,13 +212,24 @@ async function check(){
     await page.locator('.command-prompt').nth(1).click();
     assert.match(await page.locator('#command-input').inputValue(),/database reliability/);
     await page.screenshot({path:path.join(SHOTS,'evidence-search-desktop.png'),animations:'disabled'});
+
+    // Audit search while OPEN, including actual evidence cards and links.
+    await page.addScriptTag({path:require.resolve('axe-core')});
+    const searchA11y=await page.evaluate(async()=>axe.run(document,{
+      runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21a','wcag21aa']}
+    }));
+    const searchSevere=searchA11y.violations.filter(v=>['critical','serious'].includes(v.impact));
+    if(searchSevere.length)console.error('Evidence Search AXE findings:',JSON.stringify(searchSevere.map(v=>({
+      id:v.id,impact:v.impact,nodes:v.nodes.map(n=>n.target).slice(0,6)
+    }))));
+    assert.equal(searchSevere.length,0,'Open evidence-search dialog accessibility');
+
     await page.locator('#command-explore').click();
     assert.equal(await page.locator('#command-dialog').evaluate(x=>x.open),false);
     assert.equal(await page.locator('#casebook-dialog').evaluate(x=>x.open),true);
     await page.locator('#casebook-close').click();
 
     // Accessibility: audit the rendered desktop experience (not only markup).
-    await page.addScriptTag({path:require.resolve('axe-core')});
     const audit=await page.evaluate(async()=>axe.run(document,{
       runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21a','wcag21aa']}
     }));
