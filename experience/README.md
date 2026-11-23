@@ -25,6 +25,7 @@ The site supports an animated orbit illustration, bilingual content, keyboard-se
 - `compare.js` — side-by-side curated comparisons, SVG connection art and shareable URL state
 - `lab-engine.js` — pure, deterministic toy models for PostgreSQL-like grant contracts and tenant-scoped lexical retrieval
 - `lab-ui.js` — bilingual lab forms, status outputs, trace viewer and JSON scenario export
+- `journey.js` — three opt-in bilingual, source-linked guided reading paths; native dialog, keyboard navigation, URL state, and integrations with casebook, lab and comparison
 - `cover.svg` and `favicon.svg` — vector branding
 
 ## Verification
@@ -60,3 +61,11 @@ At `/?lab=permission#lab` and `/?lab=retrieval#lab`, visitors can change input p
 The lab neither starts PostgreSQL nor issues pg-osc commands, and it does not run Zhixu, Chroma, embeddings or a language model. Its explanation and evidence links clearly distinguish the model from [real MigrationWitness experiments](https://github.com/KaiserIIII/migrationwitness/blob/main/PG_OSC_197_RESULTS.md) and [Zhixu verification](https://github.com/KaiserIIII/zhixu/blob/main/docs/verification.md).
 
 The engine is a pure CommonJS/browser-compatible script, independently tested with `node --test tools/lab_engine.test.cjs`. The Chromium suite exercises both safe and unsafe transitions, bilingual output, touch-sized controls and no horizontal overflow. The **230 KB** raw-source budget includes the new engine and UI. There is no external analytics or runtime network call.
+
+## V9 — Guided Field Notes
+
+An optional guided reading mode helps first-time visitors discover the work without forcing a résumé-centric presentation or autoplay tour. The hero launcher opens a native modal with three editorial paths: **Make it real**, **Follow the failure**, and **Connect the disciplines**. Every story step links to a real public project and can open the existing system casebook, interactive teaching lab or side-by-side comparison.
+
+Deep links use `?trail=ship&note=1`, `?trail=verify&note=2` or `?trail=bridge&note=3`. These are reader positions, not telemetry. The mode is bilingual, does not send interaction data to a server, and uses the page's existing reduced-motion settings. `journey.js` renders only through `textContent` and builds all public evidence links from the same ten-record project dataset. Without JavaScript the launcher is hidden and the base page remains readable.
+
+V9 acceptance adds source-level semantic and security checks plus real Chromium desktop and 390px mobile tests: route selection, previous/next, direct step links, Chinese copy, source links, handoff to the casebook/lab/comparison and accessible dialog operation. The raw static source budget is **250 KB**. Source checks and browser tests do not establish a formal accessibility certification.

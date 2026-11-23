@@ -67,6 +67,8 @@ I'm an Engineering Management undergraduate at **Northeast Forestry University**
 
 Take a closer look / 交互式系统拆解：[CardCraft](https://kaiseriiii.github.io/KaiserIIII/?case=cardcraft) · [Zhixu](https://kaiseriiii.github.io/KaiserIIII/?case=zhixu) · [WiFiScope](https://kaiseriiii.github.io/KaiserIIII/?case=wifiscope) · [Cost Analyzer](https://kaiseriiii.github.io/KaiserIIII/?case=cost)
 
+Want a quick introduction? / 想快速了解我的作品？[Follow a guided story / 双语互动导览 ↗](https://kaiseriiii.github.io/KaiserIIII/?trail=verify&note=1)
+
 Curious how projects connect? / 想知道两个不同领域的项目有什么联系？[Explore a side-by-side comparison ↗](https://kaiseriiii.github.io/KaiserIIII/?compare=zhixu,migrationwitness#compare)
 
 Try a real interaction / 亲手运行两个简化的工程故障实验：[Reliability Lab ↗](https://kaiseriiii.github.io/KaiserIIII/?lab=permission#lab) · [Tenant Boundary ↗](https://kaiseriiii.github.io/KaiserIIII/?lab=retrieval#lab)

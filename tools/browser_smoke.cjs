@@ -148,6 +148,52 @@ async function check(){
     assert.equal(await page.locator('#lab-tab-permission').getAttribute('aria-selected'),'true');
     assert.equal(new URL(page.url()).searchParams.get('lab'),'permission');
 
+    // V9 editorial guided stories: real project actions, navigation and deep links.
+    await page.goto(ROOT,{waitUntil:'networkidle'});
+    await page.locator('#journey-launch').click();
+    assert.equal(await page.locator('#journey-dialog').evaluate(x=>x.open),true);
+    assert.equal(await page.locator('.journey-choice').count(),3);
+    await page.locator('[data-journey-choice="verify"]').click();
+    assert.match(await page.locator('#journey-title').innerText(),/migration finished/i);
+    assert.equal(await page.locator('.journey-rail-stop').count(),4);
+    assert.equal(new URL(page.url()).searchParams.get('trail'),'verify');
+    await page.locator('#journey-next').click();
+    assert.match(await page.locator('#journey-title').innerText(),/Try breaking/);
+    assert.equal(new URL(page.url()).searchParams.get('note'),'2');
+    assert.match(await page.locator('#journey-evidence-links a').first().getAttribute('href'),/migrationwitness/);
+    await page.locator('#journey-action').click();
+    assert.equal(await page.locator('#journey-dialog').evaluate(x=>x.open),false);
+    assert.equal(await page.locator('#lab-tab-permission').getAttribute('aria-selected'),'true');
+
+    await page.locator('#journey-launch').click();
+    await page.locator('[data-journey-choice="ship"]').click();
+    assert.match(await page.locator('#journey-title').innerText(),/game must actually ship/i);
+    await page.locator('#journey-action').click();
+    assert.equal(await page.locator('#casebook-dialog').evaluate(x=>x.open),true);
+    assert.match(await page.locator('#casebook-title').innerText(),/CardCraft/);
+    await page.locator('#casebook-close').click();
+
+    await page.goto(ROOT+'?trail=bridge&note=3',{waitUntil:'networkidle'});
+    assert.equal(await page.locator('#journey-dialog').evaluate(x=>x.open),true);
+    assert.equal(await page.locator('#journey-step-counter').innerText(),'03 / 03');
+    await page.locator('#journey-action').click();
+    assert.equal(await page.locator('#journey-dialog').evaluate(x=>x.open),false);
+    assert.equal(await page.locator('#compare-left').inputValue(),'cost');
+    assert.equal(await page.locator('#compare-right').inputValue(),'wifiscope');
+
+    await page.goto(ROOT,{waitUntil:'networkidle'});
+    await page.locator('[data-lang="zh"]').click();
+    await page.locator('#journey-launch').click();
+    assert.match(await page.locator('#journey-chooser-label').innerText(),/探索路线/);
+    await page.locator('[data-journey-choice="ship"]').click();
+    assert.match(await page.locator('#journey-title').innerText(),/游戏需要真正交付/);
+    await page.locator('#journey-next').click();
+    assert.match(await page.locator('#journey-title').innerText(),/知识系统/);
+    await page.screenshot({path:path.join(SHOTS,'guided-reader-desktop.png'),animations:'disabled'});
+    await page.locator('#journey-close').click();
+    assert.equal(new URL(page.url()).searchParams.has('trail'),false);
+    await page.locator('[data-lang="en"]').click();
+
     // Accessibility: audit the rendered desktop experience (not only markup).
     await page.addScriptTag({path:require.resolve('axe-core')});
     const audit=await page.evaluate(async()=>axe.run(document,{
@@ -156,6 +202,20 @@ async function check(){
     const severe=audit.violations.filter(v=>['critical','serious'].includes(v.impact));
     if(severe.length)console.error('AXE serious/critical findings:',JSON.stringify(severe.map(v=>({id:v.id,impact:v.impact,nodes:v.nodes.map(n=>n.target).slice(0,8)}))));
     assert.equal(severe.length,0,'Serious/critical accessibility violations');
+
+    // Audit the *open* native reader as well; a closed-dialog page audit cannot cover it.
+    await page.locator('#journey-launch').click();
+    await page.locator('[data-journey-choice="verify"]').click();
+    const guideAudit=await page.evaluate(async()=>axe.run(document,{
+      runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21a','wcag21aa']}
+    }));
+    const guideSevere=guideAudit.violations.filter(v=>['critical','serious'].includes(v.impact));
+    if(guideSevere.length)console.error('Guided reader AXE findings:',JSON.stringify(
+      guideSevere.map(v=>({id:v.id,impact:v.impact,nodes:v.nodes.map(n=>n.target).slice(0,8)}))
+    ));
+    assert.equal(guideSevere.length,0,'Open guided-reader serious/critical accessibility violations');
+    await page.locator('#journey-close').click();
+
 
     const budget=await page.evaluate(()=>{
       const items=performance.getEntriesByType('resource').filter(x=>x.name.startsWith(location.origin));
@@ -213,6 +273,18 @@ async function check(){
     assert.equal(await mobile.locator('#lab-verdict').getAttribute('data-status'),'fail');
     assert.equal(await mobile.locator('body').evaluate(x=>x.scrollWidth<=innerWidth+2),true,'V8 lab causes body overflow');
     await mobile.locator('#lab').screenshot({path:path.join(SHOTS,'lab-mobile.png'),animations:'disabled'});
+    // V9 reader on a 390px touch device: choose, navigate, use real source links.
+    await mobile.locator('#journey-launch').click();
+    assert.equal(await mobile.locator('.journey-choice').count(),3);
+    await mobile.locator('[data-journey-choice="verify"]').click();
+    assert.match(await mobile.locator('#journey-title').innerText(),/迁移完成/);
+    await mobile.locator('#journey-next').click();
+    assert.match(await mobile.locator('#journey-title').innerText(),/自己试着/);
+    assert.equal(await mobile.locator('#journey-dialog').evaluate(x=>x.scrollWidth<=x.clientWidth+2),true,'Reader dialog overflows 390px');
+    assert.ok((await mobile.locator('#journey-evidence-links a').count())>0);
+    await mobile.screenshot({path:path.join(SHOTS,'guided-reader-mobile.png'),animations:'disabled'});
+    await mobile.locator('#journey-close').click();
+    assert.equal(await mobile.locator('body').evaluate(x=>x.scrollWidth<=innerWidth+2),true,'Reader causes body overflow');
     await mobile.evaluate(()=>scrollTo(0,0));
     await mobile.screenshot({path:path.join(SHOTS,'mobile.png'),fullPage:true,animations:'disabled'});
     const reduced=await browser.newPage({viewport:{width:1280,height:800},reducedMotion:'reduce'});
