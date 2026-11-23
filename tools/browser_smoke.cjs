@@ -91,10 +91,14 @@ async function check(){
     if(severe.length)console.error('AXE serious/critical findings:',JSON.stringify(severe.map(v=>({id:v.id,impact:v.impact,nodes:v.nodes.map(n=>n.target).slice(0,8)}))));
     assert.equal(severe.length,0,'Serious/critical accessibility violations');
 
-    const budget=await page.evaluate(()=>performance.getEntriesByType('resource')
-      .filter(x=>x.name.startsWith(location.origin)).reduce((sum,x)=>sum+(x.transferSize||x.encodedBodySize||0),0));
+    const budget=await page.evaluate(()=>{
+      const items=performance.getEntriesByType('resource').filter(x=>x.name.startsWith(location.origin));
+      const documentEntry=performance.getEntriesByType('navigation')[0];
+      const jsCss=items.reduce((sum,x)=>sum+(x.decodedBodySize||x.encodedBodySize||0),0);
+      return jsCss+(documentEntry?.decodedBodySize||documentEntry?.encodedBodySize||0);
+    });
     assert.ok(budget<280000,'Static source transfer exceeds 280KB: '+budget);
-    console.log('Local resource transfer budget:',budget,'bytes; axe violations:',audit.violations.length);
+    console.log('Decoded document and resource bytes:',budget,'bytes; axe violations:',audit.violations.length);
     await page.evaluate(()=>scrollTo(0,0));
     await page.locator('body').click({position:{x:5,y:5},force:true});
     await page.screenshot({path:path.join(SHOTS,'desktop.png'),fullPage:true,animations:'disabled'});
