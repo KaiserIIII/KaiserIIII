@@ -67,6 +67,8 @@ I'm an Engineering Management undergraduate at **Northeast Forestry University**
 
 Take a closer look / 交互式系统拆解：[CardCraft](https://kaiseriiii.github.io/KaiserIIII/?case=cardcraft) · [Zhixu](https://kaiseriiii.github.io/KaiserIIII/?case=zhixu) · [WiFiScope](https://kaiseriiii.github.io/KaiserIIII/?case=wifiscope) · [Cost Analyzer](https://kaiseriiii.github.io/KaiserIIII/?case=cost)
 
+Curious how projects connect? / 想知道两个不同领域的项目有什么联系？[Explore a side-by-side comparison ↗](https://kaiseriiii.github.io/KaiserIIII/?compare=zhixu,migrationwitness#compare)
+
 ### Experiments & questions / 实验与探索
 
 I like experiments that reveal *why* something fails or behaves unexpectedly. I try to keep the methods and limitations alongside the code. 我会保留实验方法、真实环境记录和不符合预期的结果，而不是只留下漂亮的结论。
@@ -82,9 +84,9 @@ I like experiments that reveal *why* something fails or behaves unexpectedly. I 
   <img src="./assets/project-atlas.svg" width="100%" alt="An editorial map connecting software architecture, data, verification and research to representative public repositories."/>
 </p>
 
-There's also an [interactive portfolio ↗](https://kaiseriiii.github.io/KaiserIIII/) with original motion graphics, draggable relationships, a searchable archive and interactive source-linked system blueprints. [Source ↗](https://github.com/KaiserIIII/KaiserIIII/tree/main/experience)
+There's also an [interactive portfolio ↗](https://kaiseriiii.github.io/KaiserIIII/) with original motion graphics, draggable relationships, a searchable archive, **side-by-side project comparisons**, and source-linked system blueprints. [Source ↗](https://github.com/KaiserIIII/KaiserIIII/tree/main/experience)
 
-也可以打开[在线交互作品集 ↗](https://kaiseriiii.github.io/KaiserIIII/)看看动态设计、项目关系图、快捷搜索、中英双语和可以逐步探索的系统剖面；[完整源码](https://github.com/KaiserIIII/KaiserIIII/tree/main/experience)可以直接查看。
+也可以打开[在线交互作品集 ↗](https://kaiseriiii.github.io/KaiserIIII/)看看动态设计、可比较的项目关系、快捷搜索、中英双语和可以逐步探索的系统剖面；[完整源码](https://github.com/KaiserIIII/KaiserIIII/tree/main/experience)可以直接查看。
 
 <details>
 <summary><b>More projects / 更多项目</b></summary>
