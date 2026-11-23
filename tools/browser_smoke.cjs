@@ -29,7 +29,7 @@ async function check(){
     assert.ok((await page.locator('.archive-row').count())>=1);
     assert.ok((await page.locator('.archive-row').count())<10);
     await page.locator('#archive-query').fill('');
-    const selected=page.locator('[aria-label="Inspect MigrationWitness"]');
+    const selected=page.locator('.graph-project[aria-label="Inspect MigrationWitness"]');
     await selected.scrollIntoViewIfNeeded();
     await selected.click();
     assert.match(await page.locator('#inspector-title').innerText(),/MigrationWitness/);
