@@ -18,7 +18,7 @@ def main():
     for name in ("styles.css","favicon.svg","cover.svg"):
         if not (FOLDER/name).is_file():raise RuntimeError("Missing local asset "+name)
     if "prefers-reduced-motion" not in (FOLDER/"styles.css").read_text(encoding="utf8"):raise RuntimeError("Missing reduced-motion rules")
-    assets=("index.html","styles.css","data.js","blueprints.js","app.js","casebook.js","favicon.svg","cover.svg")
+    assets=("index.html","styles.css","data.js","blueprints.js","app.js","casebook.js","compare.js","favicon.svg","cover.svg")
     raw_bytes=sum((FOLDER/name).stat().st_size for name in assets)
     if raw_bytes >= 200_000:
         raise RuntimeError(f"Static source exceeds 200 KB raw budget: {raw_bytes:,} bytes")
