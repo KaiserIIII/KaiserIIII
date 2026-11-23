@@ -1,101 +1,109 @@
 #!/usr/bin/env python3
-"""Render a looping, warm editorial animation for the GitHub profile.
+"""Render the warm, editorial motion cover for the GitHub profile.
 
-The README itself cannot run interactive JS: this animated GIF is a preview
-of the repository-owned interactive HTML graph. No uploaded fonts or tracking.
+Pure Pillow: no external animation APIs, video players, fonts shipped in repo,
+analytics or remote assets. The motion is a preview of the hosted SVG explorer.
 """
 from __future__ import annotations
+import argparse
 import math
 from pathlib import Path
 from PIL import Image, ImageDraw, ImageFont
 
-W, H = 1200, 398
-FRAMES, DURATION = 40, 90
-BG=(247,243,237); INK=(49,44,39); MUTED=(121,108,97)
-TERRA=(185,99,73); SAGE=(104,128,113); BLUE=(110,137,159); PLUM=(141,119,147)
-PALETTE=[TERRA,SAGE,BLUE,PLUM]
-COLS=[(160,154,147),(225,216,204),(255,252,248)]
-FONTS={
-    "display": "/usr/share/fonts/truetype/dejavu/DejaVuSerif.ttf",
-    "sans": "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
-}
-def font(name,size):
-    try: return ImageFont.truetype(FONTS[name],size)
-    except OSError: return ImageFont.load_default()
-F_BOLD=font("sans",15); F_LABEL=font("sans",15); F_TAG=font("sans",12)
-F_DISPLAY=font("display",70); F_TITLE=font("display",29)
-DOMAINS=["Systems","Data","Verification","Research"]
-PROJECTS=["CardCraft","Zhixu","WiFiScope","MigrationWitness","Cost Analyzer","ReproShift"]
-LINKS=[(0,0),(0,1),(0,4),(1,1),(1,2),(1,3),(1,4),(2,0),(2,2),(2,3),(3,3),(3,5)]
-START=[(728,130+i*64) for i in range(4)]
-END=[(1112,100+i*49) for i in range(6)]
+W, H = 1200, 422
+COUNT = 48
+DURATION_MS = 100
+PAPER = (248, 245, 239)
+INK = (48, 45, 41)
+MUTED = (124, 112, 99)
+TERRA = (183, 117, 89)
+BLUE = (112, 138, 162)
+SAGE = (115, 139, 129)
+PALE = (224, 214, 202)
+CARD = (253, 250, 246)
 
-def blend(color,base,fraction):
-    return tuple(int(c*fraction+b*(1-fraction)) for c,b in zip(color,base))
+def font(path: str, size: int):
+    try:
+        return ImageFont.truetype(path, size)
+    except OSError:
+        return ImageFont.load_default()
 
-def cubic(p0,p1,p2,p3,t):
-    v=1-t
-    return (v**3*p0[0]+3*v*v*t*p1[0]+3*v*t*t*p2[0]+t**3*p3[0],
-            v**3*p0[1]+3*v*v*t*p1[1]+3*v*t*t*p2[1]+t**3*p3[1])
+SERIF = "/usr/share/fonts/truetype/dejavu/DejaVuSerif.ttf"
+ITALIC = "/usr/share/fonts/truetype/dejavu/DejaVuSerif-Italic.ttf"
+SANS = "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"
+LABEL = font(SANS, 13)
+CAPTION = font(SANS, 17)
+TITLE = font(SERIF, 59)
+SUBTITLE = font(ITALIC, 53)
+MONOGRAM = font(ITALIC, 43)
+SMALL = font(SANS, 11)
 
-def rounded(draw,rect,radius,fill,outline=None,width=1):
-    draw.rounded_rectangle(rect,radius=radius,fill=fill,outline=outline,width=width)
+def cubic(p, t):
+    u = 1 - t
+    return (
+        (u**3)*p[0][0] + 3*(u**2)*t*p[1][0] + 3*u*(t**2)*p[2][0] + (t**3)*p[3][0],
+        (u**3)*p[0][1] + 3*(u**2)*t*p[1][1] + 3*u*(t**2)*p[2][1] + (t**3)*p[3][1],
+    )
 
-def frame(i):
-    t=i/FRAMES
-    focus=int((i*4)/FRAMES)%4
-    phase=(t*4)%1
-    canvas=Image.new("RGB",(W,H),BG)
-    d=ImageDraw.Draw(canvas)
-    rounded(d,(25,20,1175,378),18,(253,250,245),(227,218,208),1)
-    d.rectangle((25,20,31,378),fill=TERRA)
-    d.text((61,52),"Y U E  Y U    /    K A I S E R",font=F_BOLD,fill=TERRA)
-    d.text((58,99),"I build systems.",font=F_DISPLAY,fill=INK)
-    d.text((61,184),"that stand up to inspection.",font=F_TITLE,fill=INK)
-    d.line((61,247,595,247),fill=(220,207,195),width=2)
-    d.text((61,270),"ENGINEERING MANAGEMENT × COMPUTER SCIENCE",font=F_LABEL,fill=MUTED)
-    d.text((61,315),"OPEN THE INTERACTIVE EXPERIENCE  →",font=F_BOLD,fill=TERRA)
-    # Soft interactive preview on right: a generative, animated bipartite graph.
-    rounded(d,(666,49,1142,349),17,(250,247,242),(229,220,211),1)
-    d.text((694,68),"LIVE GRAPH / CAPABILITIES × PROJECTS",font=F_TAG,fill=(143,128,115))
-    for idx,p in enumerate(START):
-        x,y=p
-        active=idx==focus
-        d.ellipse((x-9,y-9,x+9,y+9),fill=blend(PALETTE[idx],BG,.21),outline=PALETTE[idx] if active else (205,197,187),width=2)
-        d.ellipse((x-3,y-3,x+3,y+3),fill=PALETTE[idx])
-        d.text((x+15,y-10),DOMAINS[idx],font=F_TAG,fill=INK if active else MUTED)
-    for idx,p in enumerate(END):
-        x,y=p
-        active=idx in [b for a,b in LINKS if a==focus]
-        x=981
-        rounded(d,(x,y-16,1125,y+15),7,blend(PALETTE[focus],BG,.09) if active else (255,253,249),(223,212,200),1)
-        d.text((x+9,y-8),PROJECTS[idx],font=F_TAG,fill=INK if active else (145,137,128))
-    for a,b in LINKS:
-        x0=875; y0=START[a][1];x3=981;y3=END[b][1]
-        p0=(x0,y0);p1=(x0+37,y0);p2=(x3-31,y3);p3=(x3,y3)
-        on=a==focus
-        points=[cubic(p0,p1,p2,p3,j/20) for j in range(21)]
-        line=[(round(x),round(y)) for x,y in points]
-        d.line(line,fill=blend(PALETTE[a],BG,.75) if on else (225,217,208),width=2 if on else 1,joint="curve")
-        if on:
-            local=(phase+(a*0.1)+(b*0.12))%1
-            x,y=cubic(p0,p1,p2,p3,local)
-            d.ellipse((x-4,y-4,x+4,y+4),fill=PALETTE[a])
-    rounded(d,(696,332,827,350),7,blend(PALETTE[focus],BG,.18))
-    d.text((703,333),DOMAINS[focus].upper(),font=F_TAG,fill=PALETTE[focus])
-    return canvas
+def interpolate(a, b, t):
+    return tuple(int(x*(1-t) + y*t) for x,y in zip(a,b))
+
+def draw_frame(index):
+    phase = index / COUNT
+    im = Image.new("RGB", (W,H), PAPER)
+    d = ImageDraw.Draw(im)
+    d.rounded_rectangle((23,22,1177,400), radius=15, fill=CARD, outline=PALE, width=2)
+    d.rectangle((24,22,30,400),fill=TERRA)
+    d.text((62,54),"YUE YU / KAISER  —  PERSONAL NOTEBOOK",font=LABEL,fill=TERRA)
+    d.text((60,111),"I like making things.",font=TITLE,fill=INK)
+    d.text((60,193),"And understanding them.",font=SUBTITLE,fill=TERRA)
+    d.line((62,283,693,283),fill=PALE,width=2)
+    d.text((62,307),"SOFTWARE / GAMES / ENGINEERING / EXPERIMENTS",font=CAPTION,fill=MUTED)
+    d.text((62,370),"MADE WITH CURIOSITY.   BUILT IN CODE.",font=SMALL,fill=(153,139,124))
+
+    cx,cy = 1010,211
+    d.ellipse((cx-168,cy-168,cx+168,cy+168),outline=(224,214,201),width=2)
+    d.ellipse((cx-132,cy-132,cx+132,cy+132),outline=(216,202,188),width=2)
+    d.ellipse((cx-93,cy-93,cx+93,cy+93),outline=(215,200,185),width=2)
+    d.ellipse((cx-53,cy-53,cx+53,cy+53),fill=(239,225,212),outline=(197,164,143),width=2)
+    # Curved evidence connections follow one common Bezier formula and loop seamlessly.
+    paths=[
+        ([(859,124),(950,81),(1043,319),(1155,268)],TERRA,0.0),
+        ([(874,306),(938,374),(1074,104),(1160,146)],BLUE,.27),
+        ([(928,67),(1050,97),(931,346),(1087,359)],SAGE,.58),
+    ]
+    for j,(p,color,shift) in enumerate(paths):
+        curve=[cubic(p,k/70) for k in range(71)]
+        d.line([(round(x),round(y)) for x,y in curve], fill=interpolate(color,CARD,.16),width=2)
+        for step in (0,.45):
+            t=(phase+shift+step)%1
+            x,y=cubic(p,t)
+            rr=4 if step==0 else 3
+            d.ellipse((x-rr,y-rr,x+rr,y+rr),fill=color)
+        for x,y in (p[0],p[-1]):
+            d.ellipse((x-4,y-4,x+4,y+4),fill=color)
+
+    # Quiet phase-dependent halo; not a flashing attention trap.
+    radius=55+int(7*math.sin(2*math.pi*phase))
+    d.ellipse((cx-radius,cy-radius,cx+radius,cy+radius),outline=(213,183,163),width=1)
+    d.text((cx,cy+15),"Y.",font=MONOGRAM,fill=(114,83,68),anchor="mm")
+    d.text((828,51),"FIG. 001",font=SMALL,fill=(164,150,137))
+    d.text((1040,387),"BUILD  /  VERIFY  /  LEARN",font=SMALL,fill=MUTED,anchor="mm")
+    return im
 
 def render(path):
-    images=[frame(i).quantize(colors=128,method=Image.Quantize.MEDIANCUT) for i in range(FRAMES)]
-    dest=Path(path);dest.parent.mkdir(parents=True,exist_ok=True)
-    images[0].save(dest,format="GIF",save_all=True,append_images=images[1:],
-                   loop=0,duration=DURATION,optimize=True,disposal=2)
-    recheck=Image.open(dest)
-    if recheck.n_frames<FRAMES//2: raise RuntimeError("Motion output unexpectedly truncated")
-    print("Generated",dest,"frames=",recheck.n_frames,"bytes=",dest.stat().st_size)
+    destination=Path(path)
+    destination.parent.mkdir(parents=True,exist_ok=True)
+    frames=[draw_frame(i).quantize(colors=96,method=Image.Quantize.MEDIANCUT) for i in range(COUNT)]
+    frames[0].save(destination,format="GIF",save_all=True,
+        append_images=frames[1:],optimize=True,loop=0,
+        duration=DURATION_MS,disposal=2)
+    output=Image.open(destination)
+    if output.n_frames < COUNT//2:
+        raise RuntimeError("The motion output collapsed to too few frames")
+    print("Rendered",destination,"frames",output.n_frames,"bytes",destination.stat().st_size)
 
 if __name__=="__main__":
-    import argparse
-    arg=argparse.ArgumentParser()
-    arg.add_argument("--output",default="assets/portrait-motion.gif")
-    render(arg.parse_args().output)
+    parser=argparse.ArgumentParser()
+    parser.add_argument("--output",default="assets/portrait-motion.gif")
+    render(parser.parse_args().output)

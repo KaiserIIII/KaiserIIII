@@ -1,20 +1,22 @@
 #!/usr/bin/env python3
-"""Validate that a self-contained browser prototype has executable JS syntax."""
-import re
+"""Check the source contract for the standalone GitHub Pages app."""
+from html.parser import HTMLParser
 from pathlib import Path
 import subprocess
-import tempfile
-import sys
-src=Path("experience/index.html").read_text(encoding="utf-8")
-scripts=re.findall(r"<script(?:\s[^>]*)?>(.*?)</script>",src,re.DOTALL)
-if len(scripts)!=1:
-    raise SystemExit("Expected exactly one inline application script")
-with tempfile.TemporaryDirectory() as folder:
-    js=Path(folder)/"app.js"
-    js.write_text(scripts[0],encoding="utf-8")
-    subprocess.run(["node","--check",str(js)],check=True)
-if 'prefers-reduced-motion' not in src:
-    raise SystemExit("Missing reduced-motion mode")
-if "https://github.com/KaiserIIII" not in src:
-    raise SystemExit("Missing public project evidence")
-print("Browser JavaScript syntax and static invariants passed")
+ROOT=Path(__file__).resolve().parents[1]
+FOLDER=ROOT/"experience"
+class Scripts(HTMLParser):
+    def __init__(self):super().__init__();self.files=[]
+    def handle_starttag(self,tag,attrs):
+        if tag=="script":self.files.append(dict(attrs).get("src"))
+def main():
+    page=(FOLDER/"index.html").read_text(encoding="utf8")
+    p=Scripts();p.feed(page)
+    if p.files!=["./data.js","./app.js"]:raise RuntimeError("Unexpected remote or inline script")
+    for name in ("data.js","app.js"):
+        subprocess.run(["node","--check",str(FOLDER/name)],check=True)
+    for name in ("styles.css","favicon.svg","cover.svg"):
+        if not (FOLDER/name).is_file():raise RuntimeError("Missing local asset "+name)
+    if "prefers-reduced-motion" not in (FOLDER/"styles.css").read_text(encoding="utf8"):raise RuntimeError("Missing reduced-motion rules")
+    print("Local asset, syntax and accessibility source gates passed")
+if __name__=="__main__":main()

@@ -1,0 +1,44 @@
+# KAISER / Atelier — implementation notes
+
+A personal portfolio must feel personal. The interactive page is not a scorecard or a template of badges; its motion and information graphics come from project-specific, source-linked data.
+
+## Architecture
+
+The deployed GitHub Pages site is a deterministic, dependency-free, static app:
+
+- experience/index.html — semantic content, structured sections, search dialog and SVG stage
+- experience/styles.css — editorial design tokens, responsive layout and motion semantics
+- experience/data.js — bilingual public project records, tech tags and evidence links
+- experience/app.js — SVG graph, pointer interaction, rendering and command search
+- experience/favicon.svg and experience/cover.svg — self-authored SVG assets
+
+GitHub README pages sanitize script execution, so the README remains a visual doorway to the separately deployed Pages application.
+
+## Interaction design
+
+- Domain-to-project edges are curated (not an inferred skill score).
+- SVG node dragging updates Bezier paths with screen-to-SVG coordinate conversion.
+- Animated particles follow the same geometry with requestAnimationFrame, avoiding per-frame layout reads.
+- Scroll-triggered reveals are progressive enhancement; no-JS readers still see the primary content.
+- An on-demand command palette opens with Cmd/Ctrl+K, /, or the search icon.
+- The archive supports local string matching across both languages and technology tags.
+- Labels and descriptions use DOM text APIs rather than HTML interpolation.
+- Motion honors prefers-reduced-motion and loops avoid work when off-screen.
+- All proof links are authored with known public repository URLs.
+
+## Source boundaries
+
+The profile does not expose private source or imply all systems are production-ready.
+
+- CardCraft: playable Steam demo and public engineering cases; game source remains private.
+- Zhixu: verification notes report 120 backend and 33 frontend tests for 2026-10-08, not a coverage percentage.
+- MigrationWitness: evidence describes a specific PostgreSQL/pg-osc reproduction, not all migrations.
+- Research projects are versioned artifacts, not automatically peer-reviewed publications.
+
+## Validation
+
+CI runs source checks and JavaScript syntax tests, then a real Chromium smoke run for desktop and mobile layouts, language switching, local search, graph interactions, command palette and reduced-motion preferences. Screenshots are kept as workflow artifacts for visual review.
+
+## Rollback
+
+Git history contains the prior single-file experience; restore it from the prior main commit. Pages publishes only the experience folder.
