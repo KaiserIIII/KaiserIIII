@@ -42,3 +42,19 @@ CI runs source checks and JavaScript syntax tests, then a real Chromium smoke ru
 ## Rollback
 
 Git history contains the prior single-file experience; restore it from the prior main commit. Pages publishes only the experience folder.
+
+## System blueprints (V6)
+
+The casebook is a source-linked, keyboard-accessible interaction layer rather than an unrelated animation. Six public projects have bilingual conceptual flow models in `experience/blueprints.js`: CardCraft, Zhixu, WiFiScope, MigrationWitness, Construction Cost Analyzer, and ReproShift. Four additional projects use smaller, deliberately non-speculative overview models from `experience/data.js`.
+
+The standalone `experience/casebook.js` renderer builds SVG stage nodes and cubic connection paths from the model. It provides numbered HTML stage controls for touch and assistive technology, a native modal dialog for focus containment, synchronized language changes and deep links such as `?case=zhixu`. Each diagram marks the difference between a conceptual architecture and actual runtime measurements and links back to public code or records.
+
+## Quality gates added in V6
+
+- JS syntax checks and Python source/claim-integrity tests run in CI.
+- Playwright Chromium checks the existing project explorer, its drag/reset behavior, a keyboard command search, the casebook, deep links, Chinese/English labels, and 390px mobile interactions.
+- `axe-core` checks WCAG 2.0/2.1 A/AA issues with serious and critical impacts treated as CI failures; it does not certify full WCAG 2.2 conformance or replace human review.
+- A local resource transfer budget is checked in browser CI. This is a laboratory budget; real-user LCP, INP and CLS require field measurements.
+- Screenshots from real Chromium runs are retained as test artifacts for editorial review.
+
+The point of these gates is to catch regressions rather than to claim an arbitrary score or universal production certification.
