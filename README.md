@@ -14,7 +14,8 @@
   <a href="https://github.com/KaiserIIII?tab=repositories">Repositories</a> &nbsp;·&nbsp;
   <a href="https://store.steampowered.com/app/4338300/">My game on Steam</a> &nbsp;·&nbsp;
   <a href="https://github.com/KaiserIIII/kaiser-site">Website source</a> &nbsp;·&nbsp;
-  <a href="https://github.com/KaiserIIII/KaiserIIII/tree/main/experience">Interactive work · Source</a>
+  <a href="https://kaiseriiii.github.io/KaiserIIII/"><b>Interactive map / 交互地图 ↗</b></a> &nbsp;·&nbsp;
+  <a href="https://github.com/KaiserIIII/KaiserIIII/tree/main/experience">Source</a>
 </p>
 
 ---
@@ -77,9 +78,9 @@ I like experiments that reveal *why* something fails or behaves unexpectedly. I 
   <img src="./assets/project-atlas.svg" width="100%" alt="An editorial map connecting software architecture, data, verification and research to representative public repositories."/>
 </p>
 
-The map above is one view of the work. There's also an [interactive SVG experiment in this repository](https://github.com/KaiserIIII/KaiserIIII/tree/main/experience) with draggable nodes, animated links and Chinese / English content. The source is available; online hosting has not been confirmed.
+There's a [live interactive version ↗](https://kaiseriiii.github.io/KaiserIIII/) if you want to move the nodes, follow animated connections, or switch between Chinese and English. [Source ↗](https://github.com/KaiserIIII/KaiserIIII/tree/main/experience)
 
-上面是静态的能力与作品关系图；[交互版源码](https://github.com/KaiserIIII/KaiserIIII/tree/main/experience)支持节点拖拽、动画、筛选和中英文切换。在线部署尚未确认，因此这里不放可能返回 404 的体验地址。
+可以打开[在线交互地图 ↗](https://kaiseriiii.github.io/KaiserIIII/)试试节点拖拽、动态连线、项目筛选和中英文切换；[源码也在这里](https://github.com/KaiserIIII/KaiserIIII/tree/main/experience)。
 
 <details>
 <summary><b>More projects / 更多项目</b></summary>
