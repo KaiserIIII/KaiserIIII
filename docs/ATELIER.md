@@ -74,3 +74,11 @@ The most important change is from describing systems to *demonstrating their inv
 `experience/lab-ui.js` owns the bilingual user interaction, two accessible tabs, native inputs, repeatable execution trace, independent check results, JSON scenario export, public source links and `?lab=permission|retrieval#lab` navigation. The lab is designed to teach the underlying security/reliability question without claiming a production benchmark or scientific run.
 
 Acceptance is added in two layers: pure Node tests for model invariants and a real Chromium browser sequence for changing user inputs, unsafe/safe transitions, localization, URL state, mobile layout and axe-core checks. All source remains small (230 KB raw cap), self-hosted and free of third-party frontend JavaScript.
+
+## V9 — Guided Field Notes / human-first orientation
+
+The portfolio is now large enough that new visitors need a way through it. The optional, editorial `experience/journey.js` reader exposes three short bilingual paths: shipping a real product, inspecting why successful processes can still fail, and connecting construction, network and software engineering. Each route consists of verified public project references, clear scope, native dialog navigation, a miniature reading-progress visualization and actionable handoffs to the existing **real** site tools.
+
+This is **navigation**, not invented project metrics, telemetry or a synthetic validation result. Each reading step cites public sources already present in the curated project data; private code remains private. Deep links preserve a `trail` and a numbered `note` in the URL, and no page action requires sign-in, analytics or remote JavaScript. Readers choose this experience; the homepage never interrupts them automatically.
+
+The dialog uses focus containment, accessible names, left/right keyboard step navigation, native buttons and responsive narrow-screen layout. It supports `prefers-reduced-motion`. The visual index and cases remain available for visitors who prefer browsing freely. V9's static raw source cap is 250 KB across 12 first-party files, with independent Chromium mobile and accessibility tests.
