@@ -66,3 +66,11 @@ The point of these gates is to catch regressions rather than to claim an arbitra
 The comparison is deep-linkable via `?compare=<project-id>,<project-id>#compare`. Change/swap/preset controls preserve unrelated URL query parameters, restore state through browser history, and provide a copyable link. `experience/app.js` renders a native-button **mobile project index** while retaining the draggable SVG for wider screens. Without scripting, the SVG fallback remains available and scrollable.
 
 V7 acceptance adds Playwright tests for comparison selection, shared-label counts, deep links, swaps, bilingual copy, touch-sized project cards, map filtering, no page horizontal overflow, and automated accessibility auditing. The asset budget includes the comparison module; browser timings are *not* claimed as measured Core Web Vitals.
+
+## Hands-on reliability lab (V8)
+
+The most important change is from describing systems to *demonstrating their invariants*. `experience/lab-engine.js` contains two small, auditable, deterministic models with no I/O: a synthetic role-grant contract under a toy table swap, and a tenant-scoped lexical search of exactly six invented documents. The latter applies authorization before token scoring, and an explicit unsafe toggle shows how foreign-tenant results can emerge. Neither model should be mistaken for production PostgreSQL/pg-osc or a deployed Zhixu/Chroma/LLM execution.
+
+`experience/lab-ui.js` owns the bilingual user interaction, two accessible tabs, native inputs, repeatable execution trace, independent check results, JSON scenario export, public source links and `?lab=permission|retrieval#lab` navigation. The lab is designed to teach the underlying security/reliability question without claiming a production benchmark or scientific run.
+
+Acceptance is added in two layers: pure Node tests for model invariants and a real Chromium browser sequence for changing user inputs, unsafe/safe transitions, localization, URL state, mobile layout and axe-core checks. All source remains small (230 KB raw cap), self-hosted and free of third-party frontend JavaScript.
