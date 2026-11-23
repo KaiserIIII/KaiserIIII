@@ -1,82 +1,97 @@
 <p align="center">
-  <img src="./assets/portrait-motion.gif" width="100%" alt="Animated engineering network connecting systems, data, verification and research to six selected public software projects."/>
+  <img src="./assets/portrait-motion.gif" width="100%" alt="An animated, warm-toned map of software systems, experiments and the projects behind them."/>
 </p>
 
 <h2 align="center">Yue Yu · 于越</h2>
 
 <p align="center">
-  <b>Engineering Management undergraduate · Minor in Computer Science &amp; Technology</b><br/>
-  <b>Northeast Forestry University · 东北林业大学</b><br/>
-  软件系统 / Software Systems &nbsp;·&nbsp; 工程计算 / Construction Technology &nbsp;·&nbsp; 可靠性与科研 / Reliability &amp; Research
+  Engineering Management × Computer Science<br/>
+  Northeast Forestry University · 东北林业大学<br/>
+  <sub>构建产品，也喜欢研究系统为什么会（或不会）正常工作。</sub>
 </p>
 
 <p align="center">
-  <a href="https://kaiseriii.tech/"><b>Portfolio / 个人网站</b></a> &nbsp;·&nbsp;
-  <a href="https://github.com/KaiserIIII/KaiserIIII/tree/main/experience"><b>Interactive Explorer / 交互作品源码</b></a> &nbsp;·&nbsp;
-  <a href="https://store.steampowered.com/app/4338300/"><b>Steam Demo</b></a> &nbsp;·&nbsp;
-  <a href="https://kaiseriii.tech/#contact"><b>Contact / 联系</b></a>
+  <a href="https://github.com/KaiserIIII?tab=repositories">Repositories</a> &nbsp;·&nbsp;
+  <a href="https://store.steampowered.com/app/4338300/">My game on Steam</a> &nbsp;·&nbsp;
+  <a href="https://github.com/KaiserIIII/kaiser-site">Website source</a> &nbsp;·&nbsp;
+  <a href="https://github.com/KaiserIIII/KaiserIIII/tree/main/experience">Interactive work · Source</a>
 </p>
 
 ---
 
-I build **usable software systems** and turn engineering questions into **reproducible experiments**. My interests connect backend/data engineering, software reliability, applied AI and the built environment.
+### A little about me / 关于我
 
-我在工程管理与计算机科学的交叉领域实践：不仅做软件，也重视**数据边界、可复现验证、交付成果与实验局限**。下面的每个核心结论都能追溯到公开源码、发布物或验证记录。
+I'm an Engineering Management undergraduate at **Northeast Forestry University**, with a minor in **Computer Science and Technology**. I enjoy building software that connects different disciplines — from games and knowledge systems to networks, databases, and construction technology.
 
-### Three proof points / 三条能直接核验的技术证据
+我是东北林业大学工程管理专业本科生，辅修计算机科学与技术。喜欢把真实问题做成能使用的软件，也喜欢研究数据、系统边界以及可复现的实验。这里放着一些已经做出来的东西，还有正在探索的方向。
 
-| 交付 / Shipping | 系统 / Systems | 验证 / Verification |
-|:--|:--|:--|
-| **CardCraft · Steam Demo**<br/>Godot · Steam P2P · Workshop<br/>[Playable demo / 可玩版本 ↗](https://store.steampowered.com/app/4338300/) | **Zhixu · 120 + 33 tests**<br/>FastAPI · multi-tenant · RAG<br/>[2026-10-08 test record / 测试记录 ↗](https://github.com/KaiserIIII/zhixu/blob/main/docs/verification.md) | **MigrationWitness · PostgreSQL 16/17**<br/>SQL contracts · migration regression<br/>[Reproduction / 实验复现 ↗](https://github.com/KaiserIIII/migrationwitness/blob/main/CROSS_VERSION_RESULTS.md) |
+### Selected work / 一些代表作品
 
-<sub>Zhixu's 120 backend and 33 frontend tests are from a dated verification run, not a coverage metric. Tests and experimental reproductions are scoped evidence, not universal production guarantees. / 测试项数来自特定日期的验证记录，不代表覆盖率或生产环境认证。</sub>
+<table>
+  <tr>
+    <td width="50%" valign="top">
+      <b><a href="https://github.com/KaiserIIII/cardcraft-engineering-portfolio">CardCraft Engineering</a></b><br/>
+      <sub>Game development · Godot · Steam</sub><br/><br/>
+      A card game project that goes beyond gameplay: multiplayer state, Workshop integration, save migration and release workflows.<br/>
+      卡牌游戏、Steam 联机、创意工坊及发布工程。<br/><br/>
+      <a href="https://store.steampowered.com/app/4338300/">Playable Steam demo ↗</a>
+    </td>
+    <td width="50%" valign="top">
+      <b><a href="https://github.com/KaiserIIII/zhixu">Zhixu / 知序</a></b><br/>
+      <sub>Backend · FastAPI · RAG</sub><br/><br/>
+      A self-hosted knowledge workspace with tenant boundaries, hybrid retrieval, citations and versioned workflows.<br/>
+      多租户知识系统、检索溯源和可视化流程。<br/><br/>
+      <a href="https://github.com/KaiserIIII/zhixu/blob/main/docs/verification.md">Verification notes ↗</a>
+    </td>
+  </tr>
+  <tr>
+    <td valign="top">
+      <b><a href="https://github.com/KaiserIIII/WiFiScope">WiFiScope</a></b><br/>
+      <sub>Network protocols · Python · Desktop</sub><br/><br/>
+      Local-first network investigation built around bounded checks, PCAP evidence, and privacy-aware reporting.<br/>
+      网络调查、数据取证和本地优先工具设计。<br/><br/>
+      <a href="https://github.com/KaiserIIII/WiFiScope/releases/latest">Windows release ↗</a>
+    </td>
+    <td valign="top">
+      <b><a href="https://github.com/KaiserIIII/construction-cost-analyzer">Construction Cost Analyzer</a></b><br/>
+      <sub>Built environment · Quantification · Python</sub><br/><br/>
+      Engineering quantities, unit-rate estimation, BOQs and development appraisal in one auditable calculation system.<br/>
+      从工程计量到组价和开发评价的计算工具。<br/><br/>
+      <a href="https://github.com/KaiserIIII/construction-cost-analyzer/blob/main/docs/course-methods.md">Methods & assumptions ↗</a>
+    </td>
+  </tr>
+</table>
 
-### Industry / HR · 面向招聘方
+### Experiments & questions / 实验与探索
 
-**Systems, APIs & delivery / 系统开发与交付。** I have worked on user-facing software, data workflows, test automation, and release artifacts, across Godot, Python/FastAPI, SQL systems and developer tools. 重点查看：
+I like experiments that reveal *why* something fails or behaves unexpectedly. I try to keep the methods and limitations alongside the code. 我会保留实验方法、真实环境记录和不符合预期的结果，而不是只留下漂亮的结论。
 
-- **[Zhixu / 知序](https://github.com/KaiserIIII/zhixu)** — tenant-scoped knowledge infrastructure, hybrid retrieval, workflow versioning and test-backed boundary decisions / 多租户知识系统、混合检索、版本化工作流。
-- **[WiFiScope](https://github.com/KaiserIIII/WiFiScope)** — bounded TCP/TLS inspection, PCAP evidence, local SQLite records and a [Windows release](https://github.com/KaiserIIII/WiFiScope/releases/latest) / 网络协议与桌面软件交付。
-- **[CardCraft Engineering](https://github.com/KaiserIIII/cardcraft-engineering-portfolio)** — Steam multiplayer lifecycle, save migration, Workshop integration and a playable demo / 游戏系统工程，公开工程案例；商业游戏源码保持私有。
+- **[MigrationWitness](https://github.com/KaiserIIII/migrationwitness)** — a real PostgreSQL 16/17 migration-permission regression and independent application-contract checks. / 数据库迁移权限问题的实证复现。
+- **[ReproShift](https://github.com/KaiserIIII/reproshift-artifact)** — reproducibility and dependency compatibility across historical Python environments. / 历史依赖环境与可复现性。
+- **[Return-to-Source Hysteresis](https://github.com/KaiserIIII/return-to-source-hysteresis)** — test-time adaptation experiments, including negative findings. / 测试时自适应实验。
+- **[CS Nature Paper Skill](https://github.com/KaiserIIII/cs-nature-paper-skill)** — research workflows, evidence tracking and experimental review. / 科研流程与证据管理。
 
-### Graduate admissions · 面向研究生招生官
-
-**Engineering × Computing / 工程与计算交叉。** My undergraduate background in Engineering Management and minor in Computer Science and Technology shape my interest in rigorous experimentation, software systems and computational approaches to engineering problems. 重点查看：
-
-- **[MigrationWitness](https://github.com/KaiserIIII/migrationwitness)** — reproduces an actual PostgreSQL migration privilege-regression and checks application contracts independently / 数据库迁移实验与独立验证。
-- **[ReproShift](https://github.com/KaiserIIII/reproshift-artifact)** — reproducible historical Python dependency-compatibility experiments / 可复现的依赖兼容性研究工件。
-- **[Construction Cost Analyzer](https://github.com/KaiserIIII/construction-cost-analyzer)** — quantity takeoff, BOQ calculations, unit-rate models and appraisal with explicit [methods](https://github.com/KaiserIIII/construction-cost-analyzer/blob/main/docs/course-methods.md) / 工程计量、造价与计算机系统交叉实践。
-- **[Return-to-Source Hysteresis](https://github.com/KaiserIIII/return-to-source-hysteresis)** — experimental test-time adaptation artifact, including negative or conditional findings / 保留负面结果与研究局限的实验工件。
-
-### Explore the connections / 探索技术能力图谱
+### Connections / 项目之间的联系
 
 <p align="center">
-  <img src="./assets/project-atlas.svg" width="100%" alt="Capability-to-evidence diagram connecting system architecture, data and protocols, verification and research to publicly inspectable projects."/>
+  <img src="./assets/project-atlas.svg" width="100%" alt="An editorial map connecting software architecture, data, verification and research to representative public repositories."/>
 </p>
 
-The [interactive version](https://github.com/KaiserIIII/KaiserIIII/tree/main/experience) includes an animated SVG graph, draggable nodes, bilingual content and **industry / graduate admissions** reading modes. It is versioned with tests and can run as a standalone HTML page. / 交互版支持节点拖拽、中英切换，以及招聘与申请两种阅读视角。正式在线交互地址需完成独立网页部署。
+The map above is one view of the work. There's also an [interactive SVG experiment in this repository](https://github.com/KaiserIIII/KaiserIIII/tree/main/experience) with draggable nodes, animated links and Chinese / English content. The source is available; online hosting has not been confirmed.
+
+上面是静态的能力与作品关系图；[交互版源码](https://github.com/KaiserIIII/KaiserIIII/tree/main/experience)支持节点拖拽、动画、筛选和中英文切换。在线部署尚未确认，因此这里不放可能返回 404 的体验地址。
 
 <details>
-<summary><b>More repositories & evidence / 更多项目及验证材料</b></summary>
+<summary><b>More projects / 更多项目</b></summary>
 
-**Engineering and industrial tools / 工程与工业**  
-[QLDeviceCheck](https://github.com/KaiserIIII/QLDeviceCheck_Generic_WebUI_Linux) · [Construction Cost Analyzer](https://github.com/KaiserIIII/construction-cost-analyzer) · [Campus UAV Inspection Manager](https://github.com/KaiserIIII/-UAV-inspection-task-management-system-in-college-parks)
+**Software & tools:** [QLDeviceCheck](https://github.com/KaiserIIII/QLDeviceCheck_Generic_WebUI_Linux) · [ImportProof](https://github.com/KaiserIIII/importproof) · [DeskTrace](https://github.com/KaiserIIII/desktrace) · [CancelProof](https://github.com/KaiserIIII/cancelproof) · [LangBot Attachment Pipeline](https://github.com/KaiserIIII/langbot-unified-attachment-pipeline)
 
-**Data quality and reliability / 数据质量与可靠性**  
-[ImportProof](https://github.com/KaiserIIII/importproof) · [CancelProof](https://github.com/KaiserIIII/cancelproof) · [DeskTrace](https://github.com/KaiserIIII/desktrace) · [Calendar Migration Auditor](https://github.com/KaiserIIII/calendar-migration-auditor)
+**Research & workflows:** [Research Discovery](https://github.com/KaiserIIII/research-discovery) · [Calendar Migration Auditor](https://github.com/KaiserIIII/calendar-migration-auditor) · [RelayDesk](https://github.com/KaiserIIII/relaydesk) · [CourseRelay](https://github.com/KaiserIIII/courserelay)
 
-**Research and AI tools / AI 与科研**  
-[CS Nature Paper Skill](https://github.com/KaiserIIII/cs-nature-paper-skill) · [Research Discovery](https://github.com/KaiserIIII/research-discovery) · [LangBot Attachment Pipeline](https://github.com/KaiserIIII/langbot-unified-attachment-pipeline)
+**Public GitHub metadata:** The following image is generated from public-repository data only, not a score of ability.
 
-**Developer infrastructure / 开发工具**  
-[Claude ↔ Codex Bridge](https://github.com/KaiserIIII/claude-codex-bridge) · [RelayDesk](https://github.com/KaiserIIII/relaydesk) · [CourseRelay](https://github.com/KaiserIIII/courserelay) · [KAISER website source](https://github.com/KaiserIIII/kaiser-site)
-
-<img src="./assets/live-dashboard.svg" width="100%" alt="Auto-generated public GitHub repository metadata, language distribution and repository creation timeline." />
-
-<sub>GitHub telemetry uses public repositories only; it does not measure programming ability, contributions or private work.</sub>
+<img src="./assets/live-dashboard.svg" width="100%" alt="Public GitHub repositories and source language distribution."/>
 
 </details>
 
----
-
-<p align="center"><i>Build working systems. Verify claims. Explain decisions.</i><br/><a href="https://kaiseriii.tech/">kaiseriii.tech</a> · <a href="https://github.com/KaiserIIII?tab=repositories">Public repositories</a></p>
+<p align="center"><sub>Curiosity across disciplines · Build / Test / Learn</sub></p>
