@@ -28,6 +28,10 @@ I'm an Engineering Management undergraduate at **Northeast Forestry University**
 
 我是东北林业大学工程管理专业本科生，辅修计算机科学与技术。喜欢把真实问题做成能使用的软件，也喜欢研究数据、系统边界以及可复现的实验。这里放着一些已经做出来的东西，还有正在探索的方向。
 
+**Ask the portfolio / 直接问作品：** 在[交互主页](https://kaiseriiii.github.io/KaiserIIII/)按 **Ctrl/⌘ K**，输入「做过哪些数据库可靠性研究？」「有没有发布过的产品？」或 “knowledge retrieval”。你会看到匹配理由、公开证据和对应的局限；这是一套可解释的本地检索系统，不是自动生成的 AI 简历。
+
+**Search the work, not a skill score:** Open the [interactive portfolio](https://kaiseriiii.github.io/KaiserIIII/) and use **Ctrl/⌘ K** to ask about shipped products, database reliability or construction computing. Every match links back to the source and its verification limits.
+
 ### Selected work / 一些代表作品
 
 <table>
