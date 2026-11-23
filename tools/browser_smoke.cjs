@@ -203,6 +203,20 @@ async function check(){
     if(severe.length)console.error('AXE serious/critical findings:',JSON.stringify(severe.map(v=>({id:v.id,impact:v.impact,nodes:v.nodes.map(n=>n.target).slice(0,8)}))));
     assert.equal(severe.length,0,'Serious/critical accessibility violations');
 
+    // Audit the *open* native reader as well; a closed-dialog page audit cannot cover it.
+    await page.locator('#journey-launch').click();
+    await page.locator('[data-journey-choice="verify"]').click();
+    const guideAudit=await page.evaluate(async()=>axe.run(document,{
+      runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21a','wcag21aa']}
+    }));
+    const guideSevere=guideAudit.violations.filter(v=>['critical','serious'].includes(v.impact));
+    if(guideSevere.length)console.error('Guided reader AXE findings:',JSON.stringify(
+      guideSevere.map(v=>({id:v.id,impact:v.impact,nodes:v.nodes.map(n=>n.target).slice(0,8)}))
+    ));
+    assert.equal(guideSevere.length,0,'Open guided-reader serious/critical accessibility violations');
+    await page.locator('#journey-close').click();
+
+
     const budget=await page.evaluate(()=>{
       const items=performance.getEntriesByType('resource').filter(x=>x.name.startsWith(location.origin));
       const documentEntry=performance.getEntriesByType('navigation')[0];
