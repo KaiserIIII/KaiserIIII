@@ -12,7 +12,7 @@ Open `index.html` directly in a modern browser, or use a local server:
 python3 -m http.server 8765 --directory experience
 ```
 
-The site supports an animated orbit illustration, bilingual content, keyboard-search command palette (Cmd/Ctrl+K or /), project archive search, category filters, draggable SVG relationship graph and project evidence inspector. Controls are keyboard accessible and honor reduced-motion preferences.
+The site supports an animated orbit illustration, bilingual content, keyboard-search command palette (Cmd/Ctrl+K or /), project archive search, category filters, draggable SVG relationship graph, project evidence inspector, and shareable, interactive system blueprints (for example `?case=zhixu` and `?case=migrationwitness`). Controls are keyboard accessible and honor reduced-motion preferences.
 
 ## Files
 
@@ -20,11 +20,13 @@ The site supports an animated orbit illustration, bilingual content, keyboard-se
 - `styles.css` — responsive editorial design and reduced-motion styles
 - `data.js` — ten projects with Chinese/English copy and known public source links
 - `app.js` — rendering, graph motion, drag interactions and accessible palette
+- `blueprints.js` — six bilingual conceptual architecture journeys with explicit scope limits
+- `casebook.js` — keyboard-accessible stage diagrams, direct links, and modal interactions
 - `cover.svg` and `favicon.svg` — vector branding
 
 ## Verification
 
-The source suite checks local scripts, semantic structure, public links and data boundaries. The Chromium smoke suite checks mobile and desktop layouts, both languages, filtering, SVG drag/reset, search and reduced motion.
+The source suite checks local scripts, semantic structure, public links, data boundaries and a 200 KB raw-file budget. The Chromium smoke suite checks mobile and desktop layouts, both languages, filtering, SVG drag/reset, search, stage-by-stage project exploration, reduced motion and axe-core A/AA severe accessibility findings.
 
 ```bash
 python3 tools/check_experience.py
