@@ -23,11 +23,13 @@ The site supports an animated orbit illustration, bilingual content, keyboard-se
 - `blueprints.js` — six bilingual conceptual architecture journeys with explicit scope limits
 - `casebook.js` — keyboard-accessible stage diagrams, direct links, and modal interactions
 - `compare.js` — side-by-side curated comparisons, SVG connection art and shareable URL state
+- `lab-engine.js` — pure, deterministic toy models for PostgreSQL-like grant contracts and tenant-scoped lexical retrieval
+- `lab-ui.js` — bilingual lab forms, status outputs, trace viewer and JSON scenario export
 - `cover.svg` and `favicon.svg` — vector branding
 
 ## Verification
 
-The source suite checks local scripts, semantic structure, public links, data boundaries and a 200 KB raw-file budget. The Chromium smoke suite checks mobile and desktop layouts, both languages, filtering, SVG drag/reset, search, stage-by-stage project exploration, reduced motion and axe-core A/AA severe accessibility findings.
+The source suite checks local scripts, semantic structure, public links, data boundaries and a 230 KB raw-file budget. The Chromium smoke suite checks mobile and desktop layouts, both languages, filtering, SVG drag/reset, search, stage-by-stage project exploration, reduced motion and axe-core A/AA severe accessibility findings.
 
 ```bash
 python3 tools/check_experience.py
@@ -50,3 +52,11 @@ cache-dependent transfer estimate.
 
 Use the [GitHub Actions logs](https://github.com/KaiserIIII/KaiserIIII/actions)
 and downloadable visual-review screenshots to inspect acceptance evidence.
+
+## V8 — Hands-on reliability lab
+
+At `/?lab=permission#lab` and `/?lab=retrieval#lab`, visitors can change input parameters and execute **real JavaScript models** in their own browser. The toy grant model compares expected SQL privileges with actual privileges after a simplified native alter or replacement swap and optional grant replay. The toy retrieval model filters six invented documents by tenant before ranking exact query-token overlaps; disabling the scope creates a reproducible foreign-tenant leak.
+
+The lab neither starts PostgreSQL nor issues pg-osc commands, and it does not run Zhixu, Chroma, embeddings or a language model. Its explanation and evidence links clearly distinguish the model from [real MigrationWitness experiments](https://github.com/KaiserIIII/migrationwitness/blob/main/PG_OSC_197_RESULTS.md) and [Zhixu verification](https://github.com/KaiserIIII/zhixu/blob/main/docs/verification.md).
+
+The engine is a pure CommonJS/browser-compatible script, independently tested with `node --test tools/lab_engine.test.cjs`. The Chromium suite exercises both safe and unsafe transitions, bilingual output, touch-sized controls and no horizontal overflow. The **230 KB** raw-source budget includes the new engine and UI. There is no external analytics or runtime network call.
