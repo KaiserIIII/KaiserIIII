@@ -407,3 +407,31 @@ body.js .reveal.is-visible{opacity:1;transform:none}
   .casebook-connection.is-current{animation:none}
   .casebook-svg-node circle{transition:none}
 }
+
+
+/* A11y pass: legibility on warm paper is a product requirement, not a visual compromise.
+   Ordinary small text stays at/above the WCAG 2.2 AA 4.5:1 target. Decorative artwork keeps the softer palette. */
+:root{
+  --muted:#695e54;
+  --faint:#706257;
+  --terra-deep:#8d4937;
+}
+.overline,.feature-visual-index,.feature-visual-bottom,
+.archive-row-name small,.graph-bottom span:last-child{color:var(--terra-deep)}
+.wordmark-text small,.search-trigger,.search-trigger kbd,
+.scroll-hint,.edition-inner,.proof-number,.feature-meta,.feature-external,
+.graph-version,.graph-bottom,.graph-eyebrow,.inspector-label,
+.archive-row-index,.archive-count,.archive-tech span,
+.about-attributes small,.about-art-bottom,.about-art-inner>span,
+.about-art-seal,.footer-meta,.command-foot,
+.casebook-brand,.casebook-stage-head,.casebook-reading-label,
+#casebook-disclaimer,.casebook-links-label,.graph-note{
+  color:#66584f
+}
+.footer-meta,.footer-meta a{color:#5e5047}
+.feature-visual-index,.feature-visual-bottom{color:#5f5046}
+.hero-art-label,.hero-art-footer{color:#68594e}
+.graph-filters button,.archive-chips button,.casebook-stage-pill{color:#66594f}
+.casebook-quote blockquote{color:#8d4937}
+.casebook-pill-index,#casebook-step-count{color:#8d4937}
+.casebook-stage-pill[aria-pressed=true] .casebook-pill-index{color:#ffd1b6}
