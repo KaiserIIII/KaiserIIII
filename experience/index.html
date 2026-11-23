@@ -157,8 +157,8 @@
           </article>
           <article class="feature feature-small reveal" data-feature="migrationwitness">
             <div class="feature-visual feature-visual-sql" aria-hidden="true">
-              <span class="feature-visual-index">03 / RELIABILITY STUDY</span>
-              <div class="code-art"><div><i>01</i><span>BEGIN;</span></div><div><i>02</i><span>ALTER TABLE <em>public.events</em>;</span></div><div><i>03</i><span>SELECT <em>privilege_check()</em>;</span></div><div><i>04</i><span class="code-warn">RESULT: CONTRACT BROKEN</span></div><div><i>05</i><span>ROLLBACK;</span></div></div>
+              <span class="feature-visual-index">03 / RELIABILITY STUDY · SQL ILLUSTRATION</span>
+              <div class="code-art"><div><i>01</i><span>BEGIN;</span></div><div><i>02</i><span>ALTER TABLE <em>events</em> ADD COLUMN flag bool;</span></div><div><i>03</i><span>SELECT <em>has_table_privilege(...)</em>;</span></div><div><i>04</i><span class="code-warn">-- COMPARE AGAINST CONTRACT</span></div><div><i>05</i><span>ROLLBACK;</span></div></div>
               <span class="feature-visual-bottom">THE STATUS IS NOT THE TRUTH</span>
             </div>
             <div class="feature-body"><div class="feature-meta"><span>03 / POSTGRESQL</span><span>◯ 03</span></div>

@@ -49,7 +49,8 @@ async function check(){
     await page.keyboard.press('Enter');
     assert.equal(await page.locator('#command-dialog').evaluate(x=>x.open),false);
     assert.match(await page.locator('#inspector-title').innerText(),/WiFiScope/);
-    await page.locator('#top').scrollIntoViewIfNeeded();
+    await page.evaluate(()=>scrollTo(0,0));
+    await page.locator('body').click({position:{x:5,y:5},force:true});
     await page.screenshot({path:path.join(SHOTS,'desktop.png'),fullPage:true,animations:'disabled'});
     const mobile=await browser.newPage({viewport:{width:390,height:844},deviceScaleFactor:1,isMobile:true,hasTouch:true});
     mobile.on('pageerror',e=>failures.push('mobile '+e.message));
@@ -61,7 +62,7 @@ async function check(){
     await mobile.locator('#archive-query').fill('CardCraft');
     assert.equal(await mobile.locator('.archive-row').count(),1);
     await mobile.locator('#archive-query').fill('');
-    await mobile.locator('#top').scrollIntoViewIfNeeded();
+    await mobile.evaluate(()=>scrollTo(0,0));
     await mobile.screenshot({path:path.join(SHOTS,'mobile.png'),fullPage:true,animations:'disabled'});
     const reduced=await browser.newPage({viewport:{width:1280,height:800},reducedMotion:'reduce'});
     reduced.on('pageerror',e=>failures.push('reduced '+e.message));
