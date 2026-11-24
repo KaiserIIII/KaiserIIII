@@ -1,52 +1,48 @@
-<p align="center">
-  <a href="https://kaiseriiii.github.io/KaiserIIII/" title="Open the interactive portfolio">
-    <img src="./assets/portrait-motion.gif" width="100%" alt="Yue Yu / 于越 — editorial motion portrait. Click to explore the interactive portfolio."/>
-  </a>
-</p>
+# Yue Yu · 于越
 
-<h2 align="center">Yue Yu · 于越</h2>
+**Engineering Management × Computer Science**  
+Northeast Forestry University · 东北林业大学 · Computer Science & Technology minor
 
-<p align="center">
-  Engineering Management × Computer Science<br/>
-  Northeast Forestry University · 东北林业大学<br/>
-  <sub>构建产品，也喜欢研究系统为什么会（或不会）正常工作。</sub>
-</p>
+I build software for real engineering problems, then test what breaks.  
+将真实的工程问题转化为软件，并通过实验验证系统的边界。
 
-<p align="center">
-  <a href="https://kaiseriiii.github.io/KaiserIIII/"><b>Interactive portfolio / 交互作品集 ↗</b></a> &nbsp;·&nbsp;
-  <a href="https://github.com/KaiserIIII?tab=repositories">Repositories</a> &nbsp;·&nbsp;
-  <a href="https://store.steampowered.com/app/4338300/">My game on Steam</a> &nbsp;·&nbsp;
-  <a href="https://github.com/KaiserIIII/kaiser-site">Website source</a> &nbsp;·&nbsp;
-  <a href="https://github.com/KaiserIIII/KaiserIIII/tree/main/experience">Source</a>
-</p>
+[**Explore interactive portfolio ↗**](https://kaiseriiii.github.io/KaiserIIII/) · [Steam demo](https://store.steampowered.com/app/4338300/) · [Personal website](https://kaiseriii.tech/) · [Repositories](https://github.com/KaiserIIII?tab=repositories)
 
 ---
 
-### A little about me / 关于我
+### At a glance / 成果速览
 
-I'm an Engineering Management undergraduate at **Northeast Forestry University**, with a minor in **Computer Science and Technology**. I enjoy building software that connects different disciplines — from games and knowledge systems to networks, databases, and construction technology.
+| [**153**](https://github.com/KaiserIIII/zhixu/blob/main/docs/verification.md) | [**1,500**](https://github.com/KaiserIIII/construction-cost-analyzer/blob/main/docs/data-sources.md) | [**12**](https://github.com/KaiserIIII/migrationwitness/blob/main/PG_OSC_197_RESULTS.md) | [**Steam ↗**](https://store.steampowered.com/app/4338300/) |
+| :--- | :--- | :--- | :--- |
+| Zhixu backend + frontend tests<br>知识库验证 | ONS construction index observations<br>官方建筑价格指数 | PostgreSQL migration & control runs<br>迁移与对照实验 | Playable demo<br>可试玩产品 |
 
-我是东北林业大学工程管理专业本科生，辅修计算机科学与技术。喜欢把真实问题做成能使用的软件，也喜欢研究数据、系统边界以及可复现的实验。这里放着一些已经做出来的东西，还有正在探索的方向。
+[![Portfolio workflow](https://github.com/KaiserIIII/KaiserIIII/actions/workflows/experience.yml/badge.svg?branch=main)](https://github.com/KaiserIIII/KaiserIIII/actions/workflows/experience.yml) [![Cost analyzer workflow](https://github.com/KaiserIIII/construction-cost-analyzer/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/KaiserIIII/construction-cost-analyzer/actions/workflows/test.yml) [![Zhixu workflow](https://github.com/KaiserIIII/zhixu/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/KaiserIIII/zhixu/actions/workflows/ci.yml) [![WiFiScope workflow](https://github.com/KaiserIIII/WiFiScope/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/KaiserIIII/WiFiScope/actions/workflows/ci.yml) [![MigrationWitness workflow](https://github.com/KaiserIIII/migrationwitness/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/KaiserIIII/migrationwitness/actions/workflows/ci.yml)
 
-**Ask the portfolio / 直接问作品：** 在[交互主页](https://kaiseriiii.github.io/KaiserIIII/)按 **Ctrl/⌘ K**，输入「做过哪些数据库可靠性研究？」「有没有发布过的产品？」或 “knowledge retrieval”。你会看到匹配理由、公开证据和对应的局限；这是一套可解释的本地检索系统，不是自动生成的 AI 简历。
+<sub>Workflow badges report hosted checks, not production readiness. Figures link to their documented scope; index observations are not completed projects.</sub>
 
-**Search the work, not a skill score:** Open the [interactive portfolio](https://kaiseriiii.github.io/KaiserIIII/) and use **Ctrl/⌘ K** to ask about shipped products, database reliability or construction computing. Every match links back to the source and its verification limits.
+<p align="center">
+  <a href="https://kaiseriiii.github.io/KaiserIIII/" title="Open the interactive portfolio">
+    <img src="./assets/portrait-motion.gif" width="76%" alt="Yue Yu / 于越 — editorial motion portrait. Click to explore the interactive portfolio."/>
+  </a>
+</p>
 
-### Selected work / 一些代表作品
+**Explore by interest / 按兴趣探索:** [Built environment](https://kaiseriiii.github.io/KaiserIIII/?case=cost) · [Knowledge systems](https://kaiseriiii.github.io/KaiserIIII/?case=zhixu) · [Network evidence](https://kaiseriiii.github.io/KaiserIIII/?case=wifiscope) · [Reliability lab](https://kaiseriiii.github.io/KaiserIIII/?lab=permission#lab)
+
+### 01 / Selected work · 代表作品
 
 <table>
   <tr>
     <td width="50%" valign="top">
       <b><a href="https://github.com/KaiserIIII/cardcraft-engineering-portfolio">CardCraft Engineering</a></b><br/>
       <sub>Game development · Godot · Steam</sub><br/><br/>
-      A card game project that goes beyond gameplay: multiplayer state, Workshop integration, save migration and release workflows.<br/>
+      Steam demo, multiplayer state validation, Workshop integration, save migration and release workflows.<br/>
       卡牌游戏、Steam 联机、创意工坊及发布工程。<br/><br/>
       <a href="https://store.steampowered.com/app/4338300/">Playable Steam demo ↗</a>
     </td>
     <td width="50%" valign="top">
       <b><a href="https://github.com/KaiserIIII/zhixu">Zhixu / 知序</a></b><br/>
       <sub>Backend · FastAPI · RAG</sub><br/><br/>
-      A self-hosted knowledge workspace with tenant boundaries, hybrid retrieval, citations and versioned workflows.<br/>
+      Self-hosted knowledge system with tenant isolation, hybrid retrieval, citations and versioned workflows. 120 backend + 33 frontend tests documented.<br/>
       多租户知识系统、检索溯源和可视化流程。<br/><br/>
       <a href="https://github.com/KaiserIIII/zhixu/blob/main/docs/verification.md">Verification notes ↗</a>
     </td>
@@ -62,7 +58,7 @@ I'm an Engineering Management undergraduate at **Northeast Forestry University**
     <td valign="top">
       <b><a href="https://github.com/KaiserIIII/construction-cost-analyzer">Construction Cost Analyzer</a></b><br/>
       <sub>Built environment · Quantification · Python</sub><br/><br/>
-      Engineering quantities, unit-rate estimation, BOQs and development appraisal in one auditable calculation system.<br/>
+      Auditable quantity takeoff, unit rates, BOQs and appraisal. 1,500 official ONS index observations; bilingual Excel and report exports.<br/>
       从工程计量到组价和开发评价的计算工具。<br/><br/>
       <a href="https://github.com/KaiserIIII/construction-cost-analyzer/blob/main/docs/course-methods.md">Methods & assumptions ↗</a>
     </td>
@@ -77,7 +73,14 @@ Curious how projects connect? / 想知道两个不同领域的项目有什么联
 
 Try a real interaction / 亲手运行两个简化的工程故障实验：[Reliability Lab ↗](https://kaiseriiii.github.io/KaiserIIII/?lab=permission#lab) · [Tenant Boundary ↗](https://kaiseriiii.github.io/KaiserIIII/?lab=retrieval#lab)
 
-### Experiments & questions / 实验与探索
+<details>
+<summary><b>Engineering evidence / 工程证据矩阵</b></summary>
+
+<img src="./assets/evidence-board.svg" width="100%" alt="Documented engineering evidence, with public artifacts and verification scope." />
+
+</details>
+
+### 02 / Research & reproducibility · 实验与研究
 
 I like experiments that reveal *why* something fails or behaves unexpectedly. I try to keep the methods and limitations alongside the code. 我会保留实验方法、真实环境记录和不符合预期的结果，而不是只留下漂亮的结论。
 
@@ -86,11 +89,13 @@ I like experiments that reveal *why* something fails or behaves unexpectedly. I 
 - **[Return-to-Source Hysteresis](https://github.com/KaiserIIII/return-to-source-hysteresis)** — test-time adaptation experiments, including negative findings. / 测试时自适应实验。
 - **[CS Nature Paper Skill](https://github.com/KaiserIIII/cs-nature-paper-skill)** — research workflows, evidence tracking and experimental review. / 科研流程与证据管理。
 
-### Connections / 项目之间的联系
+### 03 / Explore the system · 交互作品集
 
 <p align="center">
   <img src="./assets/project-atlas.svg" width="100%" alt="An editorial map connecting software architecture, data, verification and research to representative public repositories."/>
 </p>
+
+**Search the work, not a skill score:** press Ctrl/⌘ K in the portfolio and ask about database reliability, published products, or construction computing. The local bilingual retrieval engine links each result to its source and limits.
 
 There's also an [interactive portfolio ↗](https://kaiseriiii.github.io/KaiserIIII/) with original motion graphics, draggable relationships, a searchable archive, **side-by-side project comparisons**, and source-linked system blueprints. [Source ↗](https://github.com/KaiserIIII/KaiserIIII/tree/main/experience)
 
